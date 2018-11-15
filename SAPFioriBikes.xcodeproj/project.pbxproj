@@ -15,6 +15,10 @@
 		AA62D46C219D39DE00F4931C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA62D46A219D39DE00F4931C /* LaunchScreen.storyboard */; };
 		AA62D477219D39DE00F4931C /* SAPFioriBikesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D476219D39DE00F4931C /* SAPFioriBikesTests.swift */; };
 		AA62D483219D3AEB00F4931C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D482219D3AEB00F4931C /* Model.swift */; };
+		AAC435A6219D530E006106B7 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; };
+		AAC435A7219D530E006106B7 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAC435AA219D530E006106B7 /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; };
+		AAC435AB219D530E006106B7 /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +29,64 @@
 			remoteGlobalIDString = AA62D45A219D39DB00F4931C;
 			remoteInfo = SAPFioriBikes;
 		};
+		AAC43599219D52F8006106B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 282B173C1D08BFFF0030A646;
+			remoteInfo = SAPFiori;
+		};
+		AAC4359B219D52F8006106B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 282B17461D08BFFF0030A646;
+			remoteInfo = SAPFioriTests;
+		};
+		AAC435A2219D5301006106B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CC3C10DF1E534F69000DAD5B;
+			remoteInfo = SAPCommon;
+		};
+		AAC435A4219D5301006106B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CC3C10E81E534F69000DAD5B;
+			remoteInfo = SAPCommonTests;
+		};
+		AAC435A8219D530E006106B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CC3C10DE1E534F69000DAD5B;
+			remoteInfo = SAPCommon;
+		};
+		AAC435AC219D530E006106B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 282B173B1D08BFFF0030A646;
+			remoteInfo = SAPFiori;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AAC435AE219D530E006106B7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AAC435A7219D530E006106B7 /* SAPCommon.framework in Embed Frameworks */,
+				AAC435AB219D530E006106B7 /* SAPFiori.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		AA62D45B219D39DB00F4931C /* SAPFioriBikes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAPFioriBikes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +101,8 @@
 		AA62D476219D39DE00F4931C /* SAPFioriBikesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAPFioriBikesTests.swift; sourceTree = "<group>"; };
 		AA62D478219D39DE00F4931C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA62D482219D3AEB00F4931C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPFiori.xcodeproj; path = ../../com.sap.mobile.platform.client.hcp.sdk.ios.ui/src/Frameworks/SAPFiori/SAPFiori.xcodeproj; sourceTree = "<group>"; };
+		AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPCommon.xcodeproj; path = "../../com.sap.mobile.apps.mentor/platform-sdk/foundation/src/Frameworks/SAPCommon/SAPCommon.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC435A6219D530E006106B7 /* SAPCommon.framework in Frameworks */,
+				AAC435AA219D530E006106B7 /* SAPFiori.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +128,8 @@
 		AA62D452219D39DB00F4931C = {
 			isa = PBXGroup;
 			children = (
+				AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */,
+				AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */,
 				AA62D45D219D39DB00F4931C /* SAPFioriBikes */,
 				AA62D475219D39DE00F4931C /* SAPFioriBikesTests */,
 				AA62D45C219D39DB00F4931C /* Products */,
@@ -110,6 +177,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		AAC43595219D52F8006106B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAC4359A219D52F8006106B7 /* SAPFiori.framework */,
+				AAC4359C219D52F8006106B7 /* SAPFioriTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAC4359E219D5301006106B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAC435A3219D5301006106B7 /* SAPCommon.framework */,
+				AAC435A5219D5301006106B7 /* SAPCommonTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,10 +205,13 @@
 				AA62D457219D39DB00F4931C /* Sources */,
 				AA62D458219D39DB00F4931C /* Frameworks */,
 				AA62D459219D39DB00F4931C /* Resources */,
+				AAC435AE219D530E006106B7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AAC435A9219D530E006106B7 /* PBXTargetDependency */,
+				AAC435AD219D530E006106B7 /* PBXTargetDependency */,
 			);
 			name = SAPFioriBikes;
 			productName = SAPFioriBikes;
@@ -178,6 +266,16 @@
 			mainGroup = AA62D452219D39DB00F4931C;
 			productRefGroup = AA62D45C219D39DB00F4931C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AAC4359E219D5301006106B7 /* Products */;
+					ProjectRef = AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */;
+				},
+				{
+					ProductGroup = AAC43595219D52F8006106B7 /* Products */;
+					ProjectRef = AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AA62D45A219D39DB00F4931C /* SAPFioriBikes */,
@@ -185,6 +283,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AAC4359A219D52F8006106B7 /* SAPFiori.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SAPFiori.framework;
+			remoteRef = AAC43599219D52F8006106B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAC4359C219D52F8006106B7 /* SAPFioriTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SAPFioriTests.xctest;
+			remoteRef = AAC4359B219D52F8006106B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAC435A3219D5301006106B7 /* SAPCommon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SAPCommon.framework;
+			remoteRef = AAC435A2219D5301006106B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		AAC435A5219D5301006106B7 /* SAPCommonTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SAPCommonTests.xctest;
+			remoteRef = AAC435A4219D5301006106B7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA62D459219D39DB00F4931C /* Resources */ = {
@@ -233,6 +362,16 @@
 			isa = PBXTargetDependency;
 			target = AA62D45A219D39DB00F4931C /* SAPFioriBikes */;
 			targetProxy = AA62D473219D39DE00F4931C /* PBXContainerItemProxy */;
+		};
+		AAC435A9219D530E006106B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SAPCommon;
+			targetProxy = AAC435A8219D530E006106B7 /* PBXContainerItemProxy */;
+		};
+		AAC435AD219D530E006106B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SAPFiori;
+			targetProxy = AAC435AC219D530E006106B7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -375,6 +514,7 @@
 		AA62D47C219D39DE00F4931C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3F8Y9D4FUY;
@@ -393,6 +533,7 @@
 		AA62D47D219D39DE00F4931C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3F8Y9D4FUY;

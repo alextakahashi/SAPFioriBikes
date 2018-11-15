@@ -8,16 +8,22 @@
 
 import UIKit
 import MapKit
+import SAPFiori
 
-class ViewController: UIViewController {
+class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     var stationInformationModel: [StationInformation] = []
     var stationStatusModel: [StationStatus] = []
     var stationDictionary: [String: SAPFioriBikeStation] = [:]
-    var mapView: MKMapView = MKMapView()
+    var layerModel = [FUIGeometryLayer(displayName: "Bikes")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
+        self.dataSource = self
+        self.delegate = self
+        mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
+        
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
             guard let data = data else { return }
@@ -29,7 +35,8 @@ class ViewController: UIViewController {
                 for station in strongSelf.stationInformationModel {
                     strongSelf.merge(station)
                 }
-                print(strongSelf.stationDictionary)
+//                print(strongSelf.stationDictionary)
+                self?.reloadData()
             } catch let jsonError {
                 print("❌ \(jsonError)")
             }
@@ -46,19 +53,12 @@ class ViewController: UIViewController {
                 for station in strongSelf.stationStatusModel {
                     strongSelf.merge(station)
                 }
-                print(strongSelf.stationDictionary)
+//                print(strongSelf.stationDictionary)
+                self?.reloadData()
             } catch let jsonError {
                 print("❌ \(jsonError)")
             }
         }.resume()
-        
-        mapView.delegate = self
-        self.view.addSubview(mapView)
-        mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        mapView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        mapView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        mapView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
     
     var dummyAnnotation = MKPointAnnotation()
@@ -83,8 +83,6 @@ class ViewController: UIViewController {
         }
         guard let cachedFioriStation = stationDictionary[stationID] else { return }
         cachedFioriStation.status = status
-        mapView.addAnnotation(cachedFioriStation)
-        print("💥 added: \(cachedFioriStation.coordinate)")
     }
     
     internal func merge(_ information: StationInformation) {
@@ -97,21 +95,55 @@ class ViewController: UIViewController {
         }
         guard let cachedFioriStation = stationDictionary[stationID] else { return }
         cachedFioriStation.information = information
-        mapView.addAnnotation(cachedFioriStation)
-        print("💥 added: \(cachedFioriStation.coordinate)")
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !(annotation is MKClusterAnnotation) else { return nil }
+        if let _ = annotation as? MKUserLocation { return nil }
+        guard let fuiannotation = annotation as? FUIAnnotation else { return nil }
+        guard let pointAnnotation = fuiannotation.annotation as? SAPFioriBikeStation else { return nil }
+        if stationDictionary.contains(where: { return $0.value == pointAnnotation }) {
+            let view = mapView.dequeueReusableAnnotationView(withIdentifier: "FUIMarkerAnnotationView", for: annotation) as! FUIMarkerAnnotationView
+            view.markerTintColor = fuiannotation.state == .default ? UIColor.preferredFioriColor(forStyle: .map1) : UIColor.preferredFioriColor(forStyle: .map2)
+            view.glyphImage = FUIIconLibrary.map.marker.bus
+            view.clusteringIdentifier = "com.sap.fui.clusterannotationview"
+            view.canShowCallout = true
+            view.isEnabled = true
+            return view
+        }
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, willRender clusterAnnotationView: MKAnnotationView, for geometryIndexesInLayers: [FUIGeometryLayer : [Int]], in state: FUIMapFloorplan.State) {
+        guard let markerAnnotationView = clusterAnnotationView as? MKMarkerAnnotationView else { return }
+        if state == .default, geometryIndexesInLayers.count == 1, let layer = geometryIndexesInLayers.first?.key {
+            markerAnnotationView.markerTintColor = UIColor.preferredFioriColor(forStyle: .map3)
+        }
     }
 }
 
-extension ViewController: MKMapViewDelegate {
+extension ViewController: FUIMKMapViewDataSource {
     
-//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        return MKAnnotationView(annotation: annotation, reuseIdentifier: "abc")
-//    }
+    // MARK: FUIMKMapViewDataSource
     
-//    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-//        for view in views {
-//            print("🍏 \(view.annotation?.coordinate)")
-//        }
-//    }
+    func numberOfLayers(in mapView: MKMapView) -> Int {
+        return layerModel.count
+    }
+    
+    func mapView(_ mapView: MKMapView, layerAtIndex index: Int) -> FUIGeometryLayer {
+        return layerModel[index]
+    }
+    
+    func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [MKAnnotation] {
+        print(stationDictionary.count)
+        return stationDictionary.map({ (key, value) in
+            return value
+        })
+    }
+}
+
+extension ViewController: FUIMKMapViewDelegate {
+    
+
     
 }
