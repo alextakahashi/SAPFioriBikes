@@ -14,6 +14,7 @@
 		AA62D469219D39DE00F4931C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA62D468219D39DE00F4931C /* Assets.xcassets */; };
 		AA62D46C219D39DE00F4931C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA62D46A219D39DE00F4931C /* LaunchScreen.storyboard */; };
 		AA62D477219D39DE00F4931C /* SAPFioriBikesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D476219D39DE00F4931C /* SAPFioriBikesTests.swift */; };
+		AA62D483219D3AEB00F4931C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D482219D3AEB00F4931C /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		AA62D472219D39DE00F4931C /* SAPFioriBikesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SAPFioriBikesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA62D476219D39DE00F4931C /* SAPFioriBikesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAPFioriBikesTests.swift; sourceTree = "<group>"; };
 		AA62D478219D39DE00F4931C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA62D482219D3AEB00F4931C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				AA62D45E219D39DB00F4931C /* AppDelegate.swift */,
 				AA62D460219D39DB00F4931C /* ViewController.swift */,
+				AA62D481219D3AD900F4931C /* Models */,
 				AA62D462219D39DB00F4931C /* Main.storyboard */,
 				AA62D468219D39DE00F4931C /* Assets.xcassets */,
 				AA62D46A219D39DE00F4931C /* LaunchScreen.storyboard */,
@@ -97,6 +100,14 @@
 				AA62D478219D39DE00F4931C /* Info.plist */,
 			);
 			path = SAPFioriBikesTests;
+			sourceTree = "<group>";
+		};
+		AA62D481219D3AD900F4931C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA62D482219D3AEB00F4931C /* Model.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +214,7 @@
 				AA62D461219D39DB00F4931C /* ViewController.swift in Sources */,
 				AA62D45F219D39DB00F4931C /* AppDelegate.swift in Sources */,
 				AA62D467219D39DB00F4931C /* SAPFioriBikes.xcdatamodeld in Sources */,
+				AA62D483219D3AEB00F4931C /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
