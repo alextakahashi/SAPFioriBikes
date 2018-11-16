@@ -23,6 +23,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         self.dataSource = self
         self.delegate = self
         mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
+        mapView.register(BikeClusterAnnotation.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
@@ -102,9 +103,9 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         if let _ = annotation as? MKUserLocation { return nil }
         guard let fuiannotation = annotation as? SAPFioriBikeStation else { return nil }
         if stationDictionary.contains(where: { return $0.value == fuiannotation }) {
-            let view = mapView.dequeueReusableAnnotationView(withIdentifier: "FUIMarkerAnnotationView", for: annotation) as! FUIMarkerAnnotationView
-            view.markerTintColor = fuiannotation.state == .default ? UIColor.preferredFioriColor(forStyle: .map1) : UIColor.preferredFioriColor(forStyle: .map2)
-            view.glyphImage = FUIIconLibrary.map.marker.bus
+            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! BikeClusterAnnotation
+//            view.markerTintColor = fuiannotation.state == .default ? UIColor.preferredFioriColor(forStyle: .map1) : UIColor.preferredFioriColor(forStyle: .map2)
+//            view.glyphImage = FUIIconLibrary.map.marker.bus
             view.clusteringIdentifier = "com.sap.fui.clusterannotationview"
             view.canShowCallout = true
             view.isEnabled = true
