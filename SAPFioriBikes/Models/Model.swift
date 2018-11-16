@@ -9,6 +9,7 @@
 import Foundation
 import MapKit
 import UIKit
+import SAPFiori
 
 struct StationInformationRequest: Decodable {
     let last_updated: CGFloat?
@@ -76,7 +77,13 @@ struct StationStatusServices: Decodable {
     let id: String?
 }
 
-class SAPFioriBikeStation: NSObject, MKAnnotation {
+class SAPFioriBikeStation: NSObject, FUIAnnotation {
+    var state: FUIMapFloorplan.State  = .default
+    
+    var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: "idk")
+    
+    var indexPath: IndexPath = IndexPath()
+    
     var information: StationInformation? = nil
     var status: StationStatus? = nil
     var coordinate: CLLocationCoordinate2D {
@@ -87,22 +94,8 @@ class SAPFioriBikeStation: NSObject, MKAnnotation {
     }
     var title: String? {
         get {
-            return  "abc"
+            guard let information = information else { return "abc" }
+            return information.name
         }
     }
-//    var _pointAnnotation: MKPointAnnotation? = nil
-//
-//    var pointAnnotation: MKPointAnnotation? {
-//        get {
-//            guard let coordinate = coordinate else { return nil}
-//            if _pointAnnotation == nil {
-//                _pointAnnotation = MKPointAnnotation()
-//                _pointAnnotation!.coordinate = coordinate
-//            }
-//            return _pointAnnotation
-//        }
-//        set {
-//            _pointAnnotation = newValue
-//        }
-//    }
 }

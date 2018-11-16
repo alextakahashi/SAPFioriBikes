@@ -100,9 +100,8 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKClusterAnnotation) else { return nil }
         if let _ = annotation as? MKUserLocation { return nil }
-        guard let fuiannotation = annotation as? FUIAnnotation else { return nil }
-        guard let pointAnnotation = fuiannotation.annotation as? SAPFioriBikeStation else { return nil }
-        if stationDictionary.contains(where: { return $0.value == pointAnnotation }) {
+        guard let fuiannotation = annotation as? SAPFioriBikeStation else { return nil }
+        if stationDictionary.contains(where: { return $0.value == fuiannotation }) {
             let view = mapView.dequeueReusableAnnotationView(withIdentifier: "FUIMarkerAnnotationView", for: annotation) as! FUIMarkerAnnotationView
             view.markerTintColor = fuiannotation.state == .default ? UIColor.preferredFioriColor(forStyle: .map1) : UIColor.preferredFioriColor(forStyle: .map2)
             view.glyphImage = FUIIconLibrary.map.marker.bus
@@ -123,6 +122,13 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
 }
 
 extension ViewController: FUIMKMapViewDataSource {
+    func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [FUIAnnotation] {
+        print(stationDictionary.count)
+        return stationDictionary.map({ (key, value) in
+            return value
+        })
+    }
+    
     
     // MARK: FUIMKMapViewDataSource
     
