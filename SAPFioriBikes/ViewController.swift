@@ -22,6 +22,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         mapView.delegate = self
         self.dataSource = self
         self.delegate = self
+        mapView.mapType = .mutedStandard
         mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
         mapView.register(BikeClusterAnnotation.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
@@ -117,7 +118,8 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, willRender clusterAnnotationView: MKAnnotationView, for geometryIndexesInLayers: [FUIGeometryLayer : [Int]], in state: FUIMapFloorplan.State) {
         guard let markerAnnotationView = clusterAnnotationView as? MKMarkerAnnotationView else { return }
         if state == .default, geometryIndexesInLayers.count == 1, let layer = geometryIndexesInLayers.first?.key {
-            markerAnnotationView.markerTintColor = UIColor.preferredFioriColor(forStyle: .map3)
+            markerAnnotationView.markerTintColor = UIColor(hexString: "0092D9")//UIColor.preferredFioriColor(forStyle: .map3)
+            markerAnnotationView.displayPriority = .defaultHigh
         }
     }
 }
