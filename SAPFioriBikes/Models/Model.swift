@@ -136,7 +136,11 @@ class BikeClusterAnnotation: MKAnnotationView {
         
         if let bikeStationAnnotation = annotation as? SAPFioriBikeStation {
             let totalBikes = bikeStationAnnotation.numBikes + bikeStationAnnotation.numEBikes
-            image = drawRatio(bikeStationAnnotation.numBikes, to: totalBikes, fractionColor: UIColor(hexString: "80B030"), wholeColor: UIColor(hexString: "002E6D"))
+            if totalBikes == 0 {
+                image = drawRatio(0, to: totalBikes, fractionColor: nil, wholeColor: UIColor(hexString: "D94700"))
+            } else {
+                image = drawRatio(bikeStationAnnotation.numBikes, to: totalBikes, fractionColor: UIColor(hexString: "80B030"), wholeColor: UIColor(hexString: "002E6D"))
+            }
             displayPriority = .defaultLow
         }
     }
