@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA51BBE8219E9A9A004B482C /* BikeStationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */; };
+		AA51BBEA219E9B42004B482C /* BikeStationClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA51BBE9219E9B42004B482C /* BikeStationClusterAnnotationView.swift */; };
 		AA62D45F219D39DB00F4931C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D45E219D39DB00F4931C /* AppDelegate.swift */; };
 		AA62D461219D39DB00F4931C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D460219D39DB00F4931C /* ViewController.swift */; };
 		AA62D464219D39DB00F4931C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA62D462219D39DB00F4931C /* Main.storyboard */; };
@@ -89,6 +91,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationAnnotationView.swift; sourceTree = "<group>"; };
+		AA51BBE9219E9B42004B482C /* BikeStationClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationClusterAnnotationView.swift; sourceTree = "<group>"; };
 		AA62D45B219D39DB00F4931C /* SAPFioriBikes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SAPFioriBikes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA62D45E219D39DB00F4931C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA62D460219D39DB00F4931C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 				AA62D46A219D39DE00F4931C /* LaunchScreen.storyboard */,
 				AA62D46D219D39DE00F4931C /* Info.plist */,
 				AA62D465219D39DB00F4931C /* SAPFioriBikes.xcdatamodeld */,
+				AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */,
+				AA51BBE9219E9B42004B482C /* BikeStationClusterAnnotationView.swift */,
 			);
 			path = SAPFioriBikes;
 			sourceTree = "<group>";
@@ -350,8 +356,10 @@
 			files = (
 				AA62D461219D39DB00F4931C /* ViewController.swift in Sources */,
 				AA62D45F219D39DB00F4931C /* AppDelegate.swift in Sources */,
+				AA51BBEA219E9B42004B482C /* BikeStationClusterAnnotationView.swift in Sources */,
 				AA62D467219D39DB00F4931C /* SAPFioriBikes.xcdatamodeld in Sources */,
 				AA62D483219D3AEB00F4931C /* Model.swift in Sources */,
+				AA51BBE8219E9A9A004B482C /* BikeStationAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,13 @@ import UIKit
 import MapKit
 import SAPFiori
 
+enum Colors {
+    static let lightBlue = UIColor(hexString: "0092D9")
+    static let green = UIColor(hexString: "80B030")
+    static let red = UIColor(hexString: "D94700")
+    static let darkBlue = UIColor(hexString: "002E6D")
+}
+
 class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     var stationInformationModel: [StationInformation] = []
@@ -19,12 +26,28 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Ford GoBike Map"
+        legend.headerTextView.text = "Ford GoBike Map Legend"
+        var bikeItem = FUIMapLegendItem(title: "Bike")
+        bikeItem.backgroundColor = Colors.green
+        bikeItem.icon = FUIMapLegendIcon(glyphImage: "")
+        var eBikeItem = FUIMapLegendItem(title: "EBike")
+        eBikeItem.backgroundColor = Colors.darkBlue
+        eBikeItem.icon = FUIMapLegendIcon(glyphImage: "")
+        var stationItem = FUIMapLegendItem(title: "Station")
+        stationItem.backgroundColor = Colors.lightBlue
+        stationItem.icon = FUIMapLegendIcon(glyphImage: "")
+        var emptyStation = FUIMapLegendItem(title: "Empty Station")
+        emptyStation.backgroundColor = Colors.red
+        emptyStation.icon = FUIMapLegendIcon(glyphImage: "")
+        legend.items = [bikeItem, eBikeItem, stationItem, emptyStation]
         mapView.delegate = self
         self.dataSource = self
         self.delegate = self
         mapView.mapType = .mutedStandard
         mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
-        mapView.register(BikeClusterAnnotation.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
@@ -100,11 +123,18 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard !(annotation is MKClusterAnnotation) else { return nil }
+        guard !(annotation is MKClusterAnnotation) else {
+            return nil
+//            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as! BikeStationAnnotationView
+//            view.clusteringIdentifier = "com.sap.fui.clusterannotationview"
+//            view.canShowCallout = true
+//            view.isEnabled = true
+//            return view
+        }
         if let _ = annotation as? MKUserLocation { return nil }
         guard let fuiannotation = annotation as? SAPFioriBikeStation else { return nil }
         if stationDictionary.contains(where: { return $0.value == fuiannotation }) {
-            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! BikeClusterAnnotation
+            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! BikeStationAnnotationView
 //            view.markerTintColor = fuiannotation.state == .default ? UIColor.preferredFioriColor(forStyle: .map1) : UIColor.preferredFioriColor(forStyle: .map2)
 //            view.glyphImage = FUIIconLibrary.map.marker.bus
             view.clusteringIdentifier = "com.sap.fui.clusterannotationview"
@@ -118,7 +148,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, willRender clusterAnnotationView: MKAnnotationView, for geometryIndexesInLayers: [FUIGeometryLayer : [Int]], in state: FUIMapFloorplan.State) {
         guard let markerAnnotationView = clusterAnnotationView as? MKMarkerAnnotationView else { return }
         if state == .default, geometryIndexesInLayers.count == 1, let layer = geometryIndexesInLayers.first?.key {
-            markerAnnotationView.markerTintColor = UIColor(hexString: "0092D9")//UIColor.preferredFioriColor(forStyle: .map3)
+            markerAnnotationView.markerTintColor = Colors.lightBlue//UIColor.preferredFioriColor(forStyle: .map3)
             markerAnnotationView.displayPriority = .defaultHigh
         }
     }
