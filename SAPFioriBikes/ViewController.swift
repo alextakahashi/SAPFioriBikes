@@ -10,7 +10,11 @@ import UIKit
 import MapKit
 import SAPFiori
 
-class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
+class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, StationModelConsuming {
+    
+    var stationMap: MKMapView {
+        return mapView
+    }
     
     var stationInformationModel: [StationInformation] = []
     var stationStatusModel: [StationStatus] = []
@@ -91,28 +95,24 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
             }.resume()
     }
     
-    internal func merge(_ status: StationStatus) {
-        guard let stationID = status.station_id else { return }
+    internal func merge<T: StationIDProducing>(_ stationDataObject: T) {
+        guard let stationID = stationDataObject.station_id else { return }
         guard stationDictionary.contains(where: { return $0.key == stationID }) else {
             let newFioriStation = SAPFioriBikeStation()
-            newFioriStation.status = status
+            stationIDDataBind(newFioriStation, stationDataObject)
             stationDictionary[stationID] = newFioriStation
             return
         }
         guard let cachedFioriStation = stationDictionary[stationID] else { return }
-        cachedFioriStation.status = status
+        stationIDDataBind(cachedFioriStation, stationDataObject)
     }
     
-    internal func merge(_ information: StationInformation) {
-        guard let stationID = information.station_id else { return }
-        guard stationDictionary.contains(where: { return $0.key == stationID }) else {
-            let newFioriStation = SAPFioriBikeStation()
-            newFioriStation.information = information
-            stationDictionary[stationID] = newFioriStation
-            return
+    internal func stationIDDataBind<T: StationIDProducing>(_ stationObject: SAPFioriBikeStation, _ stationDataObject: T) {
+        if let status = stationDataObject as? StationStatus {
+            stationObject.status = status
+        } else if let information = stationDataObject as? StationInformation {
+            stationObject.information = information
         }
-        guard let cachedFioriStation = stationDictionary[stationID] else { return }
-        cachedFioriStation.information = information
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

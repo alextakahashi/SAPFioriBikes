@@ -21,7 +21,11 @@ struct StationInformationData: Decodable {
     let stations: [StationInformation?]?
 }
 
-struct StationInformation: Decodable {
+protocol StationIDProducing {
+    var station_id: String? { get }
+}
+
+struct StationInformation: Decodable, StationIDProducing {
     let station_id: String?
     let external_id: String?
     let name: String?
@@ -58,7 +62,7 @@ struct StationStatusData: Decodable {
     let stations: [StationStatus?]?
 }
 
-struct StationStatus: Decodable {
+struct StationStatus: Decodable, StationIDProducing {
     let station_id: String?
     let num_bikes_available: Int?
     let num_ebikes_available: Int?
