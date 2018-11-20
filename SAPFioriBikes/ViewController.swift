@@ -10,13 +10,6 @@ import UIKit
 import MapKit
 import SAPFiori
 
-enum Colors {
-    static let lightBlue = UIColor(hexString: "0092D9")
-    static let green = UIColor(hexString: "80B030")
-    static let red = UIColor(hexString: "D94700")
-    static let darkBlue = UIColor(hexString: "002E6D")
-}
-
 class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     var stationInformationModel: [StationInformation] = []
