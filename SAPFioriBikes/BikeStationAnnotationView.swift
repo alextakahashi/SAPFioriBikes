@@ -12,21 +12,18 @@ class BikeStationAnnotationView: MKAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        collisionMode = .rectangle
-        centerOffset = CGPoint(x: 0, y: -10) // Offset center point to animate better with marker annotations
+        collisionMode = .circle
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// - Tag: CustomCluster
     override func prepareForDisplay() {
         super.prepareForDisplay()
         var numBikes = 0
         var numEBikes = 0
         if let bikeStationAnnotation = annotation as? SAPFioriBikeStation {
-//            totalBikes = bikeStationAnnotation.numBikes + bikeStationAnnotation.numEBikes
             numBikes = bikeStationAnnotation.numBikes
             numEBikes = bikeStationAnnotation.numEBikes
 
@@ -49,7 +46,7 @@ class BikeStationAnnotationView: MKAnnotationView {
     }
     
     private func drawRatio(_ fraction: Int, to whole: Int, fractionColor: UIColor?, wholeColor: UIColor?, _ isCluster: Bool) -> UIImage {
-        let squarelength: CGFloat = 32
+        let squarelength: CGFloat = 27
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: squarelength, height: squarelength))
         return renderer.image { _ in
             // Fill full circle with wholeColor
@@ -69,7 +66,6 @@ class BikeStationAnnotationView: MKAnnotationView {
             // Fill inner circle with white color
             isCluster ? Colors.lightBlue.setFill() : UIColor.white.setFill()
             UIBezierPath(arcCenter: CGPoint(x: squarelength/2, y: squarelength/2), radius: squarelength/4, startAngle: 0, endAngle: 360, clockwise: true).fill()
-            //            UIBezierPath(ovalIn: CGRect(x: 8, y: 8, width: squarelength/2, height: squarelength/2)).fill()
             
             // Finally draw count text vertically and horizontally centered
             let attributes = [ NSAttributedString.Key.foregroundColor: isCluster ? UIColor.white : UIColor.black/*,

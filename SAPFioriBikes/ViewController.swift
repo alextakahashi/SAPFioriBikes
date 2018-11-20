@@ -43,11 +43,11 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         legend.items = [bikeItem, eBikeItem, stationItem, emptyStation]
         mapView.delegate = self
         self.dataSource = self
-        self.delegate = self
         mapView.mapType = .mutedStandard
         mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
         mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+//        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+        detailPanel.isSearchEnabled = false
         
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
@@ -86,16 +86,12 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         }.resume()
     }
     
-    var dummyAnnotation = MKPointAnnotation()
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         let centerCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
         let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
         let region = MKCoordinateRegion(center: centerCoordinate, span: span)
         mapView.setRegion(region, animated: true)
-        dummyAnnotation.coordinate = centerCoordinate
-        mapView.addAnnotation(dummyAnnotation)
     }
     
     internal func merge(_ status: StationStatus) {
@@ -124,46 +120,34 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKClusterAnnotation) else {
-            return nil
-//            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as! BikeStationAnnotationView
-//            view.clusteringIdentifier = "com.sap.fui.clusterannotationview"
-//            view.canShowCallout = true
-//            view.isEnabled = true
-//            return view
+            let clusterAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView
+            clusterAnnotationView?.displayPriority = .required
+            clusterAnnotationView?.markerTintColor = Colors.lightBlue
+            clusterAnnotationView?.titleVisibility = .hidden
+            clusterAnnotationView?.subtitleVisibility = .hidden
+            return clusterAnnotationView
         }
         if let _ = annotation as? MKUserLocation { return nil }
-        guard let fuiannotation = annotation as? SAPFioriBikeStation else { return nil }
-        if stationDictionary.contains(where: { return $0.value == fuiannotation }) {
-            let view = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as! BikeStationAnnotationView
-//            view.markerTintColor = fuiannotation.state == .default ? UIColor.preferredFioriColor(forStyle: .map1) : UIColor.preferredFioriColor(forStyle: .map2)
-//            view.glyphImage = FUIIconLibrary.map.marker.bus
-            view.clusteringIdentifier = "com.sap.fui.clusterannotationview"
-            view.canShowCallout = true
-            view.isEnabled = true
-            return view
+        guard let bikeStationAnnotation = annotation as? SAPFioriBikeStation else { return nil }
+        if stationDictionary.contains(where: { return $0.value == bikeStationAnnotation }) {
+            guard let bikeStationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as? BikeStationAnnotationView else { return nil }
+            bikeStationAnnotationView.clusteringIdentifier = "com.sap.fui.clusterannotationview"
+            bikeStationAnnotationView.canShowCallout = true
+            bikeStationAnnotationView.displayPriority = .defaultLow
+            return bikeStationAnnotationView
         }
         return nil
     }
-    
-    func mapView(_ mapView: MKMapView, willRender clusterAnnotationView: MKAnnotationView, for geometryIndexesInLayers: [FUIGeometryLayer : [Int]], in state: FUIMapFloorplan.State) {
-        guard let markerAnnotationView = clusterAnnotationView as? MKMarkerAnnotationView else { return }
-        if state == .default, geometryIndexesInLayers.count == 1, let layer = geometryIndexesInLayers.first?.key {
-            markerAnnotationView.markerTintColor = Colors.lightBlue//UIColor.preferredFioriColor(forStyle: .map3)
-            markerAnnotationView.displayPriority = .defaultHigh
-        }
-    }
 }
+
+// MARK: FUIMKMapViewDataSource
 
 extension ViewController: FUIMKMapViewDataSource {
     func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [FUIAnnotation] {
-        print(stationDictionary.count)
         return stationDictionary.map({ (key, value) in
             return value
         })
     }
-    
-    
-    // MARK: FUIMKMapViewDataSource
     
     func numberOfLayers(in mapView: MKMapView) -> Int {
         return layerModel.count
@@ -174,7 +158,6 @@ extension ViewController: FUIMKMapViewDataSource {
     }
     
     func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [MKAnnotation] {
-        print(stationDictionary.count)
         return stationDictionary.map({ (key, value) in
             return value
         })
@@ -182,7 +165,13 @@ extension ViewController: FUIMKMapViewDataSource {
 }
 
 extension ViewController: FUIMKMapViewDelegate {
-    
-
+ 
+    func mapView(_ mapView: MKMapView, willRender clusterAnnotationView: MKAnnotationView, for geometryIndexesInLayers: [FUIGeometryLayer : [Int]], in state: FUIMapFloorplan.State) {
+        print("👍")
+        guard let markerAnnotationView = clusterAnnotationView as? MKMarkerAnnotationView else { return }
+        print("change color pls")
+        markerAnnotationView.markerTintColor = Colors.lightBlue
+        markerAnnotationView.clusteringIdentifier = "com.sap.fui.clusterannotationview"
+    }
     
 }
