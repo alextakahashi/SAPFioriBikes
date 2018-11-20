@@ -26,7 +26,26 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupMapControl()
+        setupLegend()
+        loadInitialData()
+    }
+    
+    func setupMapControl() {
         self.title = "Ford GoBike Map"
+        let centerCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
+        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        let region = MKCoordinateRegion(center: centerCoordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        mapView.delegate = self
+        self.dataSource = self
+        mapView.mapType = .mutedStandard
+        mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
+        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        detailPanel.isSearchEnabled = false
+    }
+    
+    func setupLegend() {
         legend.headerTextView.text = "Ford GoBike Map Legend"
         var bikeItem = FUIMapLegendItem(title: "Bike")
         bikeItem.backgroundColor = Colors.green
@@ -41,14 +60,9 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         emptyStation.backgroundColor = Colors.red
         emptyStation.icon = FUIMapLegendIcon(glyphImage: "")
         legend.items = [bikeItem, eBikeItem, stationItem, emptyStation]
-        mapView.delegate = self
-        self.dataSource = self
-        mapView.mapType = .mutedStandard
-        mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
-        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-//        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
-        detailPanel.isSearchEnabled = false
-        
+    }
+    
+    internal func loadInitialData() {
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
             guard let data = data else { return }
@@ -60,12 +74,11 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
                 for station in strongSelf.stationInformationModel {
                     strongSelf.merge(station)
                 }
-//                print(strongSelf.stationDictionary)
                 self?.reloadData()
             } catch let jsonError {
                 print("❌ \(jsonError)")
             }
-        }.resume()
+            }.resume()
         
         guard let stationStatusURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_status.json")else { return }
         URLSession.shared.dataTask(with: stationStatusURL) { [weak self] (data, response, err) in
@@ -78,20 +91,11 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
                 for station in strongSelf.stationStatusModel {
                     strongSelf.merge(station)
                 }
-//                print(strongSelf.stationDictionary)
                 self?.reloadData()
             } catch let jsonError {
                 print("❌ \(jsonError)")
             }
-        }.resume()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let centerCoordinate = CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194)
-        let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-        let region = MKCoordinateRegion(center: centerCoordinate, span: span)
-        mapView.setRegion(region, animated: true)
+            }.resume()
     }
     
     internal func merge(_ status: StationStatus) {
@@ -143,6 +147,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
 // MARK: FUIMKMapViewDataSource
 
 extension ViewController: FUIMKMapViewDataSource {
+    
     func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [FUIAnnotation] {
         return stationDictionary.map({ (key, value) in
             return value
@@ -163,6 +168,8 @@ extension ViewController: FUIMKMapViewDataSource {
         })
     }
 }
+
+// MARK: FUIMKMapViewDelegate
 
 extension ViewController: FUIMKMapViewDelegate {
  
