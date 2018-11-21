@@ -76,15 +76,7 @@ class FioriBikeMapModel {
         if let path = Bundle.main.path(forResource: "station_information", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let request = try JSONDecoder().decode(StationInformationRequest.self, from: data)
-                guard let stations = request.data?.stations else { return }
-                self.stationInformationModel = stations.compactMap({return $0})
-                for station in self.stationInformationModel {
-                    self.merge(station)
-                }
-                self.stationModel = self.stationDictionary.map({ return $0.value })
-                self.delegate?.reloadData()
-
+                loadStationInformationData(data)
             } catch let jsonError {
                 print("❌ \(jsonError)")
             }
@@ -92,17 +84,7 @@ class FioriBikeMapModel {
         if let path = Bundle.main.path(forResource: "station_status", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let request = try JSONDecoder().decode(StationStatusRequest.self, from: data)
-                guard let stations = request.data?.stations else { return }
-                self.stationStatusModel = stations.compactMap({return $0})
-                for station in self.stationStatusModel {
-                    self.merge(station)
-                }
-                self.stationModel = self.stationDictionary.map({ return $0.value })
-                for station in stationModel {
-                    print("🔥 numBikes: \(station.numBikes)")
-                }
-                self.delegate?.reloadData()
+                loadStationStatusData(data)
             } catch let jsonError {
                 print("❌ \(jsonError)")
             }
@@ -112,39 +94,47 @@ class FioriBikeMapModel {
     private func loadLiveData() {
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
+            guard err == nil else { print("Error fetching data: \(String(describing: err))"); return }
             guard let data = data else { return }
-            do {
-                guard let strongSelf = self else { return }
-                let request = try JSONDecoder().decode(StationInformationRequest.self, from: data)
-                guard let stations = request.data?.stations else { return }
-                strongSelf.stationInformationModel = stations.compactMap({return $0})
-                for station in strongSelf.stationInformationModel {
-                    strongSelf.merge(station)
-                }
-                strongSelf.stationModel = strongSelf.stationDictionary.map({ return $0.value })
-                self?.delegate?.reloadData()
-            } catch let jsonError {
-                print("❌ \(jsonError)")
-            }
-            }.resume()
+            self?.loadStationInformationData(data)
+        }.resume()
         
-        guard let stationStatusURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_status.json")else { return }
+        guard let stationStatusURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_status.json") else { return }
         URLSession.shared.dataTask(with: stationStatusURL) { [weak self] (data, response, err) in
+            guard err == nil else { print("Error fetching data: \(String(describing: err))"); return }
             guard let data = data else { return }
-            do {
-                guard let strongSelf = self else { return }
-                let request = try JSONDecoder().decode(StationStatusRequest.self, from: data)
-                guard let stations = request.data?.stations else { return }
-                strongSelf.stationStatusModel = stations.compactMap({return $0})
-                for station in strongSelf.stationStatusModel {
-                    strongSelf.merge(station)
-                }
-                strongSelf.stationModel = strongSelf.stationDictionary.map({ return $0.value })
-                self?.delegate?.reloadData()
-            } catch let jsonError {
-                print("❌ \(jsonError)")
+            self?.loadStationStatusData(data)
+        }.resume()
+    }
+    
+    private func loadStationStatusData(_ data: Data) {
+        do {
+            let request = try JSONDecoder().decode(StationStatusRequest.self, from: data)
+            guard let stations = request.data?.stations else { return }
+            self.stationStatusModel = stations.compactMap({return $0})
+            for station in self.stationStatusModel {
+                self.merge(station)
             }
-            }.resume()
+            self.stationModel = self.stationDictionary.map({ return $0.value })
+            self.delegate?.reloadData()
+        }   catch let jsonError {
+            print("❌ \(jsonError)")
+        }
+    }
+    
+    private func loadStationInformationData(_ data: Data) {
+        do {
+            let request = try JSONDecoder().decode(StationInformationRequest.self, from: data)
+            guard let stations = request.data?.stations else { return }
+            self.stationInformationModel = stations.compactMap({return $0})
+            for station in self.stationInformationModel {
+                self.merge(station)
+            }
+            self.stationModel = self.stationDictionary.map({ return $0.value })
+            self.delegate?.reloadData()
+        }   catch let jsonError {
+            print("❌ \(jsonError)")
+        }
     }
     
     private func merge<T: StationIDProducing>(_ stationDataObject: T) {
