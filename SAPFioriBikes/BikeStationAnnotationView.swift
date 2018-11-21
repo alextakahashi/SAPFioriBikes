@@ -13,6 +13,9 @@ class BikeStationAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         collisionMode = .circle
+        clusteringIdentifier = "bike"
+        canShowCallout = true
+        displayPriority = .defaultLow
     }
     
     required init?(coder aDecoder: NSCoder) {
