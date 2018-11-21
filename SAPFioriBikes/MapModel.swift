@@ -63,7 +63,7 @@ class FioriBikeMapModel {
     }()
     
     func loadData(isLiveData: Bool = false) {
-        loadInitialData()
+        isLiveData ? loadLiveData() : loadLocalData()
     }
     
     // MARK: Private Functions
@@ -72,7 +72,44 @@ class FioriBikeMapModel {
     private var stationStatusModel: [StationStatus] = []
     private var stationDictionary: [String: SAPFioriBikeStation] = [:]
     
-    private func loadInitialData() {
+    private func loadLocalData() {
+        if let path = Bundle.main.path(forResource: "station_information", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let request = try JSONDecoder().decode(StationInformationRequest.self, from: data)
+                guard let stations = request.data?.stations else { return }
+                self.stationInformationModel = stations.compactMap({return $0})
+                for station in self.stationInformationModel {
+                    self.merge(station)
+                }
+                self.stationModel = self.stationDictionary.map({ return $0.value })
+                self.delegate?.reloadData()
+
+            } catch let jsonError {
+                print("❌ \(jsonError)")
+            }
+        }
+        if let path = Bundle.main.path(forResource: "station_status", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let request = try JSONDecoder().decode(StationStatusRequest.self, from: data)
+                guard let stations = request.data?.stations else { return }
+                self.stationStatusModel = stations.compactMap({return $0})
+                for station in self.stationStatusModel {
+                    self.merge(station)
+                }
+                self.stationModel = self.stationDictionary.map({ return $0.value })
+                for station in stationModel {
+                    print("🔥 numBikes: \(station.numBikes)")
+                }
+                self.delegate?.reloadData()
+            } catch let jsonError {
+                print("❌ \(jsonError)")
+            }
+        }
+    }
+    
+    private func loadLiveData() {
         guard let stationInformationURL: URL = URL(string: "https://gbfs.fordgobike.com/gbfs/en/station_information.json")else { return }
         URLSession.shared.dataTask(with: stationInformationURL) { [weak self] (data, response, err) in
             guard let data = data else { return }

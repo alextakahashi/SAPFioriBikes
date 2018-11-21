@@ -44,7 +44,13 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
             clusterAnnotationView?.subtitleVisibility = .hidden
             return clusterAnnotationView
         }
-        return mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as? BikeStationAnnotationView
+        if let bikeStationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as? BikeStationAnnotationView {
+            bikeStationAnnotationView.clusteringIdentifier = "bike"
+            bikeStationAnnotationView.canShowCallout = true
+            bikeStationAnnotationView.displayPriority = .defaultLow
+            return bikeStationAnnotationView
+        }
+        return nil
     }
 }
 

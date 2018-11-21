@@ -18,6 +18,8 @@
 		AA62D483219D3AEB00F4931C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62D482219D3AEB00F4931C /* Model.swift */; };
 		AA6A4B1D21A4A06C00C34319 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A4B1C21A4A06C00C34319 /* Colors.swift */; };
 		AA6A4B2121A4A08900C34319 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6A4B2021A4A08800C34319 /* MapModel.swift */; };
+		AA9C0DCA21A4EE2D001AC4D6 /* station_status.json in Resources */ = {isa = PBXBuildFile; fileRef = AA9C0DC921A4EE2D001AC4D6 /* station_status.json */; };
+		AA9C0DCC21A4EE4E001AC4D6 /* station_information.json in Resources */ = {isa = PBXBuildFile; fileRef = AA9C0DCB21A4EE4E001AC4D6 /* station_information.json */; };
 		AAC435A6219D530E006106B7 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; };
 		AAC435A7219D530E006106B7 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAC435AA219D530E006106B7 /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; };
@@ -107,6 +109,8 @@
 		AA62D482219D3AEB00F4931C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		AA6A4B1C21A4A06C00C34319 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AA6A4B2021A4A08800C34319 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		AA9C0DC921A4EE2D001AC4D6 /* station_status.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_status.json; sourceTree = "<group>"; };
+		AA9C0DCB21A4EE4E001AC4D6 /* station_information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_information.json; sourceTree = "<group>"; };
 		AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPFiori.xcodeproj; path = ../../com.sap.mobile.platform.client.hcp.sdk.ios.ui/src/Frameworks/SAPFiori/SAPFiori.xcodeproj; sourceTree = "<group>"; };
 		AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPCommon.xcodeproj; path = "../../com.sap.mobile.apps.mentor/platform-sdk/foundation/src/Frameworks/SAPCommon/SAPCommon.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +169,8 @@
 				AA62D45E219D39DB00F4931C /* AppDelegate.swift */,
 				AA62D460219D39DB00F4931C /* ViewController.swift */,
 				AA6A4B2021A4A08800C34319 /* MapModel.swift */,
+				AA9C0DC921A4EE2D001AC4D6 /* station_status.json */,
+				AA9C0DCB21A4EE4E001AC4D6 /* station_information.json */,
 				AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */,
 				AA6A4B1C21A4A06C00C34319 /* Colors.swift */,
 				AA62D481219D3AD900F4931C /* Models */,
@@ -337,8 +343,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9C0DCA21A4EE2D001AC4D6 /* station_status.json in Resources */,
 				AA62D46C219D39DE00F4931C /* LaunchScreen.storyboard in Resources */,
 				AA62D469219D39DE00F4931C /* Assets.xcassets in Resources */,
+				AA9C0DCC21A4EE4E001AC4D6 /* station_information.json in Resources */,
 				AA62D464219D39DB00F4931C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
