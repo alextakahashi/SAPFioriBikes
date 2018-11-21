@@ -23,12 +23,12 @@ class BikeStationAnnotationView: MKAnnotationView {
         super.prepareForDisplay()
         var numBikes = 0
         var numEBikes = 0
-        if let bikeStationAnnotation = annotation as? SAPFioriBikeStation {
+        if let bikeStationAnnotation = annotation as? BikeStationAnnotation {
             numBikes = bikeStationAnnotation.numBikes
             numEBikes = bikeStationAnnotation.numEBikes
 
         } else if let bikeStationClusterAnnotation = annotation as? MKClusterAnnotation {
-            let members = bikeStationClusterAnnotation.memberAnnotations.compactMap({ return $0 as? SAPFioriBikeStation })
+            let members = bikeStationClusterAnnotation.memberAnnotations.compactMap({ return $0 as? BikeStationAnnotation })
             numBikes = members.reduce(0) { (result, next) in
                 result + next.numBikes
             }

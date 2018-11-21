@@ -23,7 +23,7 @@ class FioriBikeMapModel {
     
     let mapType: MKMapType = .mutedStandard
     
-    var stationModel: [SAPFioriBikeStation] = []
+    var stationModel: [BikeStationAnnotation] = []
     
     let layerModel: [FUIGeometryLayer] = [FUIGeometryLayer(displayName: "Bikes")]
     
@@ -70,7 +70,7 @@ class FioriBikeMapModel {
     
     private var stationInformationModel: [StationInformation] = []
     private var stationStatusModel: [StationStatus] = []
-    private var stationDictionary: [String: SAPFioriBikeStation] = [:]
+    private var stationDictionary: [String: BikeStationAnnotation] = [:]
     
     private func loadLocalData() {
         if let path = Bundle.main.path(forResource: "station_information", ofType: "json") {
@@ -140,7 +140,7 @@ class FioriBikeMapModel {
     private func merge<T: StationIDProducing>(_ stationDataObject: T) {
         guard let stationID = stationDataObject.station_id else { return }
         guard stationDictionary.contains(where: { return $0.key == stationID }) else {
-            let newFioriStation = SAPFioriBikeStation()
+            let newFioriStation = BikeStationAnnotation()
             stationIDDataBind(newFioriStation, stationDataObject)
             stationDictionary[stationID] = newFioriStation
             return
@@ -149,7 +149,7 @@ class FioriBikeMapModel {
         stationIDDataBind(cachedFioriStation, stationDataObject)
     }
     
-    private func stationIDDataBind<T: StationIDProducing>(_ stationObject: SAPFioriBikeStation, _ stationDataObject: T) {
+    private func stationIDDataBind<T: StationIDProducing>(_ stationObject: BikeStationAnnotation, _ stationDataObject: T) {
         if let status = stationDataObject as? StationStatus {
             stationObject.status = status
         } else if let information = stationDataObject as? StationInformation {
