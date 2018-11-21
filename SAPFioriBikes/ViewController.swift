@@ -27,7 +27,6 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         mapView.mapType = mapModel.mapType
         mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
         mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        detailPanel.isSearchEnabled = false
 
         // MARK: Map Legend
         legend.headerTextView.text = mapModel.legendTitle
