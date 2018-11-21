@@ -166,6 +166,7 @@
 				AA6A4B2021A4A08800C34319 /* MapModel.swift */,
 				AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */,
 				AA62D482219D3AEB00F4931C /* BikeStationAnnotation.swift */,
+				AA62D46D219D39DE00F4931C /* Info.plist */,
 				AA62D481219D3AD900F4931C /* DataModel */,
 				AA9C0DD121A4FC37001AC4D6 /* Utils */,
 			);
@@ -200,7 +201,6 @@
 				AA62D462219D39DB00F4931C /* Main.storyboard */,
 				AA62D468219D39DE00F4931C /* Assets.xcassets */,
 				AA62D46A219D39DE00F4931C /* LaunchScreen.storyboard */,
-				AA62D46D219D39DE00F4931C /* Info.plist */,
 				AA62D465219D39DB00F4931C /* SAPFioriBikes.xcdatamodeld */,
 			);
 			path = Utils;
