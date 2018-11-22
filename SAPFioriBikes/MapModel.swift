@@ -11,7 +11,7 @@ import SAPFiori
 
 class FioriBikeMapModel {
     
-    weak var delegate: ViewController? = nil
+    // MARK: Standard Map Buisiness Objects
     
     let title: String = "Ford GoBike Map"
     
@@ -23,9 +23,19 @@ class FioriBikeMapModel {
     
     let mapType: MKMapType = .mutedStandard
     
-    var stationModel: [BikeStationAnnotation] = []
+    // MARK: FUIMKMapViewDataSource Buisiness Objects
+    
+    weak var delegate: ViewController? = nil
     
     let layerModel: [FUIGeometryLayer] = [FUIGeometryLayer(displayName: "Bikes")]
+    
+    var stationModel: [BikeStationAnnotation] = []
+    
+    func loadData(isLiveData: Bool = false) {
+        isLiveData ? loadLiveData() : loadLocalData()
+    }
+    
+    // MARK: FUIMapLegend Buisiness Objects
     
     var legendTitle: String {
         return title + " Legend"
@@ -61,10 +71,6 @@ class FioriBikeMapModel {
         }()
         return [bikeLegendItem, eBikeLegendItem, stationItem, emptyStationItem]
     }()
-    
-    func loadData(isLiveData: Bool = false) {
-        isLiveData ? loadLiveData() : loadLocalData()
-    }
     
     // MARK: Private Functions
     

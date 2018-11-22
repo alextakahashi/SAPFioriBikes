@@ -17,18 +17,22 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: Map Setup
+        // MARK: Model Setup
         mapModel.delegate = self
         mapModel.loadData()
+        
+        // MARK: Standard Map Setup
         title = mapModel.title
         mapView.delegate = self
-        self.dataSource = self
         mapView.setRegion(mapModel.region, animated: true)
         mapView.mapType = mapModel.mapType
         mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
         mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        
+        // MARK: FUIMKMapViewDataSource
+        self.dataSource = self
 
-        // MARK: Map Legend
+        // MARK: FUIMapLegend
         legend.headerTextView.text = mapModel.legendTitle
         legend.items = mapModel.legendModel
     }
