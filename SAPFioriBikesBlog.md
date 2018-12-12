@@ -1,9 +1,8 @@
 # SAPFioriBikes: Visualization of GoBike Stations with the SAP Fiori iOS SDK
 
-![SAPFioriBikes iPhone](https://github.wdf.sap.corp/storage/user/26508/files/43971448-ed8c-11e8-9e74-c87fdd77b0c7)
+![SAPFioriBikes iPhone](./ReadMeImages/No_Legend_iPhone.png?raw=true)
 
-![SAPFioriBikes iPhone Legend](https://github.wdf.sap.corp/storage/user/26508/files/4272e0ba-ed8c-11e8-874c-23d277abe56b)
-
+[//]: # (Needs a public github link)
 > An implementation of the Ford GoBike map using the SAP Fiori iOS SDK.  Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
 # Inspiration
@@ -12,18 +11,19 @@ If you are a Bay Area resident, you are sure to have come across the [Ford GoBik
 
 Looking at the Ford GoBike map, I noticed that it was cluttered with stations.  
 
-![Ford GoBike Map Cluttered Station](GoBike Image)
+![Ford GoBike Map Cluttered Station](./ReadMeImages/Ford_Bikes_Unclustered.jpg?raw=true)
 
 Thankfully during WWDC 2017, MapKit introduced the [`MKClusterAnnotation`](https://developer.apple.com/documentation/mapkit/mkclusterannotation) which will consolidate annotations together.
 
 The [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) app showed clusters of annotations (bicycle, tricycle, and unicycle) annotations that translated nicely to the Ford GoBike bikes and eBikes.
 
-![TANDm Cluster Annotation Screen shot](https://github.wdf.sap.corp/storage/user/26508/files/64b907d2-ed99-11e8-8538-91dc959aab7b)
+![TANDm Cluster Annotation Screen shot](./ReadMeImages/Tandm.png?raw=true)
 
 I used features from the [SAP Fiori iOS SDK](https://developer.apple.com/sap/) [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/), to provide the foundation of my application.  I make use of the `FUIMapToolbar` and `FUIMapLegend` to display annotations and what they mean.
 
 # Implementation
 
+[//]: # (Needs a public github link)
 Follow along using the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes).  
 
 ## Map View Controller
@@ -84,14 +84,33 @@ A `BikeStationAnnotation`s are constructed while loading the `stationModel`.  Us
 
 ## BikeStationAnnotationView
 
-![Annotation Image](https://github.wdf.sap.corp/storage/user/26508/files/f7ce5212-fa4f-11e8-9ad8-e3c3355c0ab0)
+![Annotation Image](./ReadMeImages/Bike_Annotation_View.png?raw=true)
 
-The `BikeStationAnnotationView` takes inspiration from TANDm with their cluster annotation.  With a few minor changes to the original source code, I am able to display the number of bikes and eBikes at each station.  
+The `BikeStationAnnotationView` takes inspiration from TANDm with their cluster annotation.  With a few minor changes to the original source code, I am able to display the number of bikes and eBikes at each station.  Tap the legend button to show the meaning of each color.  
 
-![Clustered Annotations](https://github.wdf.sap.corp/storage/user/26508/files/04d302a4-fa51-11e8-9543-338fdc1ffc03)
+![Clustered Annotations](./ReadMeImages/Zoom_Extent_Cluster.png?raw=true)
 
-Optionally, we can also get the total number of bikes and eBikes from all the clusters under this view by getting the `memberAnnotations`.  Looks like there are not any eBikes outside of San Francisco!  Tap the legend button to show the meaning of each color.  
+Optionally, we can also get the total number of bikes and eBikes from all the clusters under this view by getting the `memberAnnotations`.  Tap the [Zoom Extent Button](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapToolbar/ZoomExtentButton.html) to show all the annotations in the map.  Looks like there are not any eBikes outside of San Francisco!  
 
 ## iPad Support
 
-The floorplan also supports an iPad layout.  Run the app on an iPad
+The floorplan also supports an iPad layout.
+
+![No Legend iPad](./ReadMeImages/No_Legend_iPad.png?raw=true)
+
+![Show_Legend_iPad](./ReadMeImages/Show_Legend_iPad.png?raw=true)
+
+## Next Steps
+
+This project implements a few features of the Map Floorplan including:
+* Adding map annotations and cluster annotations
+* Zooming to show all annotations
+* Implementing the map legend
+
+In a future post I will extend this project to implement:
+* [Search Results View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelSearchResultsViewController.html) to filter annotations
+* [Content View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelContentViewController.html) to show additional details of an annotation
+
+## Conclusion
+
+Maps at first glance can feel quite overwhelming! Maps can display an overwhelming amount of information and it is important to keep the user focus on the most relevant information.  The Map Floorplan provides the foundation for a robust map with a minimal amount of code on the developer's end.  

@@ -4,18 +4,18 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 
 ## SAPFioriBikes iPhone
 
-![SAPFioriBikes iPhone](https://github.wdf.sap.corp/storage/user/26508/files/43971448-ed8c-11e8-9e74-c87fdd77b0c7)
+![SAPFioriBikes iPhone](./ReadMeImages/No_Legend_iPhone.png?raw=true)
 
 ## SAPFioriBikes iPhone Legend
 
-![SAPFioriBikes iPhone Legend](https://github.wdf.sap.corp/storage/user/26508/files/4272e0ba-ed8c-11e8-874c-23d277abe56b)
+![SAPFioriBikes iPhone Legend](./ReadMeImages/Show_Legend_iPhone.png?raw=true)
 
 ## SAPFioriBikes iPad
-![SAPFioriBikes iPad](https://github.wdf.sap.corp/storage/user/26508/files/49b174a8-ed8d-11e8-8e9c-526985acdef1)
+![SAPFioriBikes iPad](./ReadMeImages/No_Legend_iPad.png?raw=true)
 
 ## SAPFioriBikes iPad Legend
 
-![SAPFioriBikes iPad Legend](https://github.wdf.sap.corp/storage/user/26508/files/47615ca4-ed8d-11e8-951e-b7f370921d49)
+![SAPFioriBikes iPad Legend](./ReadMeImages/Show_Legend_iPad.png?raw=true)
 
 ## Getting Started
 
