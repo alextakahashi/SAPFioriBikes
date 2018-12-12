@@ -27,7 +27,9 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 
 4. Build and Run 🚴‍
 
-5. Read my walkthrough [blogpost](placeholderBlogPostLink)
+5. Read my walkthrough [blogpost](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md)
+
+[//]: # (Needs external blog post link)
 
 ### Prerequisites
 
