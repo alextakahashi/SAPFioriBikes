@@ -13,6 +13,7 @@ import SAPFiori
 class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     
     var mapModel = FioriBikeMapModel()
+    let isClusteringStations = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
         mapView.delegate = self
         mapView.setRegion(mapModel.region, animated: true)
         mapView.mapType = mapModel.mapType
-        mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
-        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: "BikeStationAnnotationView")
         
         // MARK: FUIMKMapViewDataSource
         self.dataSource = self
@@ -40,14 +40,19 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let _ = annotation as? MKUserLocation { return nil }
         guard !(annotation is MKClusterAnnotation) else {
-            let clusterAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView
-            clusterAnnotationView?.displayPriority = .required
-            clusterAnnotationView?.markerTintColor = Colors.lightBlue
-            clusterAnnotationView?.titleVisibility = .hidden
-            clusterAnnotationView?.subtitleVisibility = .hidden
-            return clusterAnnotationView
+            if isClusteringStations {
+                let clusterAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView
+                clusterAnnotationView?.markerTintColor = Colors.lightBlue
+                clusterAnnotationView?.titleVisibility = .hidden
+                clusterAnnotationView?.subtitleVisibility = .hidden
+                return clusterAnnotationView
+            } else {
+                let bikeStationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "BikeStationAnnotationView") as? BikeStationAnnotationView
+                bikeStationAnnotationView?.displayPriority = .required
+                return bikeStationAnnotationView
+            }
         }
-        if let bikeStationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation) as? BikeStationAnnotationView {
+        if let bikeStationAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "BikeStationAnnotationView", for: annotation) as? BikeStationAnnotationView {
             bikeStationAnnotationView.clusteringIdentifier = "bike"
             bikeStationAnnotationView.canShowCallout = true
             bikeStationAnnotationView.displayPriority = .defaultLow

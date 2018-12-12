@@ -46,7 +46,7 @@ class BikeStationAnnotationView: MKAnnotationView {
     }
     
     private func drawRatio(_ fraction: Int, to whole: Int, fractionColor: UIColor?, wholeColor: UIColor?, _ isCluster: Bool) -> UIImage {
-        let squarelength: CGFloat = 27
+        let squarelength: CGFloat = 35
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: squarelength, height: squarelength))
         return renderer.image { _ in
             // Fill full circle with wholeColor
@@ -64,11 +64,11 @@ class BikeStationAnnotationView: MKAnnotationView {
             piePath.fill()
             
             // Fill inner circle with white color
-            isCluster ? Colors.lightBlue.setFill() : UIColor.white.setFill()
+            UIColor.white.setFill()
             UIBezierPath(arcCenter: CGPoint(x: squarelength/2, y: squarelength/2), radius: squarelength/4, startAngle: 0, endAngle: 360, clockwise: true).fill()
             
             // Finally draw count text vertically and horizontally centered
-            let attributes = [ NSAttributedString.Key.foregroundColor: isCluster ? UIColor.white : UIColor.black/*,
+            let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.black/*,
                  NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)*/]
             let text = "\(whole)"
             let size = text.size(withAttributes: attributes)

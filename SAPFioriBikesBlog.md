@@ -18,7 +18,7 @@ Thankfully during WWDC 2017, MapKit introduced the [`MKClusterAnnotation`](https
 
 The [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) app showed clusters of annotations (bicycle, tricycle, and unicycle) annotations that translated nicely to the Ford GoBike bikes and eBikes.
 
-![Tandm Cluster Annotation Screen shot](https://github.wdf.sap.corp/storage/user/26508/files/64b907d2-ed99-11e8-8538-91dc959aab7b)
+![TANDm Cluster Annotation Screen shot](https://github.wdf.sap.corp/storage/user/26508/files/64b907d2-ed99-11e8-8538-91dc959aab7b)
 
 I used features from the [SAP Fiori iOS SDK](https://developer.apple.com/sap/) [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/), to provide the foundation of my application.  I make use of the `FUIMapToolbar` and `FUIMapLegend` to display annotations and what they mean.
 
@@ -80,4 +80,18 @@ This function call reloads the geometries and layers on the map.  At this point 
 
 ## BikeStationAnnotation
 
-A `BikeStationAnnotation`s are constructed while loading the `stationModel`.  Use in the `FUIMKMapFloorplanViewController` requires the annotation inherit from `FUIAnnotation`.  
+A `BikeStationAnnotation`s are constructed while loading the `stationModel`.  Use in the `FUIMKMapFloorplanViewController` requires the annotation implement the `FUIAnnotation` protocol which requires a `state`, `layer`, and `indexPath`.  For simplicity's sake, we set them to a few default values.  We also store information we want to display on the map including the `coordinate`, `title`, `numBikes`, `numEBikes`, and `numDocsAvailable`.
+
+## BikeStationAnnotationView
+
+![Annotation Image](https://github.wdf.sap.corp/storage/user/26508/files/f7ce5212-fa4f-11e8-9ad8-e3c3355c0ab0)
+
+The `BikeStationAnnotationView` takes inspiration from TANDm with their cluster annotation.  With a few minor changes to the original source code, I am able to display the number of bikes and eBikes at each station.  
+
+![Clustered Annotations](https://github.wdf.sap.corp/storage/user/26508/files/04d302a4-fa51-11e8-9543-338fdc1ffc03)
+
+Optionally, we can also get the total number of bikes and eBikes from all the clusters under this view by getting the `memberAnnotations`.  Looks like there are not any eBikes outside of San Francisco!  Tap the legend button to show the meaning of each color.  
+
+## iPad Support
+
+The floorplan also supports an iPad layout.  Run the app on an iPad
