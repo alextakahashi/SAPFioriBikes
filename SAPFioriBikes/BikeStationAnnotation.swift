@@ -52,4 +52,16 @@ class BikeStationAnnotation: NSObject, FUIAnnotation {
             return status?.num_docks_available ?? 0
         }
     }
+    
+    var distanceToUser: CLLocationDistance? = nil
+    
+    var distanceToUserString: String? {
+        get {
+            guard let distanceToUser = distanceToUser else { return nil }
+            let distanceFormatter = MKDistanceFormatter()
+            distanceFormatter.units = .imperial
+            distanceFormatter.distance
+            return distanceFormatter.string(fromDistance: distanceToUser)
+        }
+    }
 }
