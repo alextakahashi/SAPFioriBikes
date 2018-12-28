@@ -15,10 +15,11 @@ protocol SearchResultsProducing: class {
     var isFiltered: Bool { get set }
     var stationModel: [BikeStationAnnotation] { get }
     var filteredResults: [BikeStationAnnotation] { get set }
-    var tableView: UITableView? { get }
+    var searchResultsTableView: UITableView? { get }
+    var didSelectBikeStationSearchResult: ((BikeStationAnnotation) -> Void)! { get }
 }
 
-class SearchResults: NSObject {
+class SearchResultsControllerObject: NSObject {
     
     weak var model: SearchResultsProducing!
     
@@ -34,7 +35,7 @@ class SearchResults: NSObject {
     
 }
 
-extension SearchResults: UITableViewDataSource {
+extension SearchResultsControllerObject: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
@@ -42,31 +43,35 @@ extension SearchResults: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: FUIObjectTableViewCell.reuseIdentifier) as? FUIObjectTableViewCell else { return UITableViewCell() }
+        cell.backgroundColor = UIColor.clear
         let bikeStation = searchResults[indexPath.row]
-        cell.detailImage = FUIIconLibrary.map.marker.asset
         cell.headlineText = bikeStation.title
-        cell.subheadlineText = bikeStation.distanceToUserString//distance
-        cell.descriptionText = "Description"
-        cell.statusText = "Status"
-        cell.substatusText = "Substatus"
-        cell.statusImage = FUIIconLibrary.map.marker.bus
-        cell.substatusImage = FUIIconLibrary.map.marker.cafe
+        cell.subheadlineText = bikeStation.distanceToUserString
+        cell.statusImage = UIImage(named: "bicycle")
+        cell.statusImageView.tintColor = bikeStation.numBikes > 0 ? UIColor.preferredFioriColor(forStyle: .positive) : UIColor.preferredFioriColor(forStyle: .negative)
+        cell.substatusImage = FUIIconLibrary.system.flashOff.withRenderingMode(.alwaysTemplate)
+        cell.substatusImageView.tintColor = bikeStation.numEBikes > 0 ? UIColor.preferredFioriColor(forStyle: .positive) : UIColor.preferredFioriColor(forStyle: .negative)
         return cell
     }
+}
+
+extension SearchResultsControllerObject: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bikeStationAnnotation = searchResults[indexPath.row]
+        model.didSelectBikeStationSearchResult(bikeStationAnnotation)
+    }
     
 }
 
-extension SearchResults: UISearchBarDelegate {
+extension SearchResultsControllerObject: UISearchBarDelegate {
     
-    /// :nodoc:
-    public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsBookmarkButton = false
         searchBar.showsCancelButton = true
     }
     
-    /// :nodoc:
-    public func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         DispatchQueue.main.async { [unowned self] in
             searchBar.showsCancelButton = false
             self.model.isFiltered = false
@@ -74,7 +79,6 @@ extension SearchResults: UISearchBarDelegate {
         }
     }
     
-    /// :nodoc:
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText
         self.model.isFiltered = !searchString.isEmpty
@@ -82,7 +86,7 @@ extension SearchResults: UISearchBarDelegate {
             guard let title = $0.title else { return false }
             return title.localizedCaseInsensitiveContains(searchString)
         })
-        self.model.tableView?.reloadData()
+        self.model.searchResultsTableView?.reloadData()
     }
     
 }

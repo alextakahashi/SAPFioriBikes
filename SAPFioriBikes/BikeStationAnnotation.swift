@@ -64,4 +64,9 @@ class BikeStationAnnotation: NSObject, FUIAnnotation {
             return distanceFormatter.string(fromDistance: distanceToUser)
         }
     }
+    
+    var rentalUrl: URL? {
+        guard let rental_url = information?.rental_url else { return nil }
+        return URL(string: rental_url)
+    }
 }
