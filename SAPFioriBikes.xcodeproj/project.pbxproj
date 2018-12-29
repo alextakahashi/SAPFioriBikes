@@ -24,10 +24,12 @@
 		AA9C0DCC21A4EE4E001AC4D6 /* station_information.json in Resources */ = {isa = PBXBuildFile; fileRef = AA9C0DCB21A4EE4E001AC4D6 /* station_information.json */; };
 		AA9C0DCE21A4F9FB001AC4D6 /* StationInformationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C0DCD21A4F9FB001AC4D6 /* StationInformationRequest.swift */; };
 		AA9C0DD021A4FA48001AC4D6 /* StationStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C0DCF21A4FA48001AC4D6 /* StationStatusRequest.swift */; };
+		AABA53CF21D76B1C0097715E /* bart.json in Resources */ = {isa = PBXBuildFile; fileRef = AABA53CE21D76B1C0097715E /* bart.json */; };
 		AAC435A6219D530E006106B7 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; };
 		AAC435A7219D530E006106B7 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAC435AA219D530E006106B7 /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; };
 		AAC435AB219D530E006106B7 /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AAC4DFD521D7603600924692 /* BartRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC4DFD421D7603600924692 /* BartRequest.swift */; };
 		AAF90F5A21D565D200540479 /* SearchResultsControllerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,8 +122,10 @@
 		AA9C0DCB21A4EE4E001AC4D6 /* station_information.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_information.json; sourceTree = "<group>"; };
 		AA9C0DCD21A4F9FB001AC4D6 /* StationInformationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInformationRequest.swift; sourceTree = "<group>"; };
 		AA9C0DCF21A4FA48001AC4D6 /* StationStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationStatusRequest.swift; sourceTree = "<group>"; };
+		AABA53CE21D76B1C0097715E /* bart.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bart.json; sourceTree = "<group>"; };
 		AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPFiori.xcodeproj; path = ../../com.sap.mobile.platform.client.hcp.sdk.ios.ui/src/Frameworks/SAPFiori/SAPFiori.xcodeproj; sourceTree = "<group>"; };
 		AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPCommon.xcodeproj; path = "../../com.sap.mobile.apps.mentor/platform-sdk/foundation/src/Frameworks/SAPCommon/SAPCommon.xcodeproj"; sourceTree = "<group>"; };
+		AAC4DFD421D7603600924692 /* BartRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartRequest.swift; sourceTree = "<group>"; };
 		AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsControllerObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +202,8 @@
 				AA9C0DCB21A4EE4E001AC4D6 /* station_information.json */,
 				AA9C0DCF21A4FA48001AC4D6 /* StationStatusRequest.swift */,
 				AA9C0DCD21A4F9FB001AC4D6 /* StationInformationRequest.swift */,
+				AABA53CE21D76B1C0097715E /* bart.json */,
+				AAC4DFD421D7603600924692 /* BartRequest.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				AA62D469219D39DE00F4931C /* Assets.xcassets in Resources */,
 				AA5B00BB21D5AB7600355128 /* Images.xcassets in Resources */,
 				AA9C0DCC21A4EE4E001AC4D6 /* station_information.json in Resources */,
+				AABA53CF21D76B1C0097715E /* bart.json in Resources */,
 				AA62D464219D39DB00F4931C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +390,7 @@
 			files = (
 				AA6A4B2121A4A08900C34319 /* MapModel.swift in Sources */,
 				AA62D461219D39DB00F4931C /* ViewController.swift in Sources */,
+				AAC4DFD521D7603600924692 /* BartRequest.swift in Sources */,
 				AAF90F5A21D565D200540479 /* SearchResultsControllerObject.swift in Sources */,
 				AA62D45F219D39DB00F4931C /* AppDelegate.swift in Sources */,
 				AA9C0DCE21A4F9FB001AC4D6 /* StationInformationRequest.swift in Sources */,

@@ -33,6 +33,7 @@ class FioriBikeMapModel {
     
     func loadData(isLiveData: Bool = false) {
         isLiveData ? loadLiveData() : loadLocalData()
+        loadBartData()
     }
     
     var userLocation: CLLocation? {
@@ -170,6 +171,22 @@ class FioriBikeMapModel {
             stationObject.status = status
         } else if let information = stationDataObject as? StationInformation {
             stationObject.information = information
+        }
+    }
+    
+    private func loadBartData() {
+        
+        if let path = Bundle.main.path(forResource: "bart", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let request = try JSONDecoder().decode(BartPolylineRequest.self, from: data)
+                for feature in request.features {
+                    print("💙 \(feature.properties.name)")
+                }
+            } catch let jsonError {
+                // handle error
+                print("❌ \(jsonError)")
+            }
         }
     }
 }
