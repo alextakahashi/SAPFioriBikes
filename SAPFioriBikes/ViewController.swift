@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import SAPFiori
 
-class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, SearchResultsProducing, CLLocationManagerDelegate {
+class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, SearchResultsProducing, CLLocationManagerDelegate, FUIMKMapViewDelegate {
 
     var mapModel = FioriBikeMapModel()
     let isClusteringStations = true
@@ -28,6 +28,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
             detailPanel.content.tableView.reloadData()
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         
         // MARK: FUIMKMapViewDataSource
         self.dataSource = self
+        self.delegate = self
 
         // MARK: FUIMapLegend
         legend.headerTextView.text = mapModel.legendTitle
@@ -109,6 +111,50 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         return nil
     }
     
+//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+//        print("✅ \(#function)")
+//        guard let fuiOverlay = overlay as? FUIOverlay else {
+//            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+//            polylineRenderer.strokeColor = UIColor.red.withAlphaComponent(0.5)
+//            polylineRenderer.lineWidth = 5
+//            return polylineRenderer
+//        }
+//        if let lineOverlay = overlay as? MKPolyline {
+//            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+//            return polylineRenderer
+//        }
+//        return MKPolylineRenderer()
+//    }
+    
+    var counter = 0
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        defer {
+            counter += 1
+        }
+        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
+        polylineRenderer.strokeColor = UIColor.red.withAlphaComponent(0.5)
+        polylineRenderer.lineWidth = 5
+        guard let bartOverlay = overlay as? BartLineOverlay else { return polylineRenderer }
+        var color: UIColor = UIColor.brown.withAlphaComponent(0.5)
+        switch counter {
+        case 0:
+            color = UIColor.purple.withAlphaComponent(0.5)
+        case 1:
+            color = UIColor.green.withAlphaComponent(0.5)
+        case 2:
+            color = UIColor.yellow.withAlphaComponent(0.5)
+        case 3:
+            color = UIColor.orange.withAlphaComponent(0.5)
+        case 4:
+            color = UIColor.cyan.withAlphaComponent(0.5)
+        default:
+            break
+        }
+        polylineRenderer.strokeColor = color
+        return polylineRenderer
+    }
+    
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation? {
         didSet {
@@ -129,6 +175,11 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
             }
         }
     }
+    
+    override func reloadData() {
+        super.reloadData()
+        print("🎉 number of overlays: \(mapView.overlays.count)")
+    }
 }
 
 // MARK: FUIMKMapViewDataSource
@@ -136,7 +187,14 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
 extension ViewController: FUIMKMapViewDataSource {
     
     func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [FUIAnnotation] {
-        return mapModel.stationModel
+        switch layer.displayName {
+        case "Bikes":
+            return mapModel.stationModel
+        case "Bart Line":
+            return mapModel.bartLineModel
+        default:
+            preconditionFailure()
+        }
     }
     
     func numberOfLayers(in mapView: MKMapView) -> Int {
@@ -149,3 +207,14 @@ extension ViewController: FUIMKMapViewDataSource {
 }
 
 // ¹: https://stackoverflow.com/questions/25449469/show-current-location-and-update-location-in-mkmapview-in-swift
+
+//public extension MKMultiPoint {
+//    var coordinates: [CLLocationCoordinate2D] {
+//        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid,
+//                                              count: pointCount)
+//
+//        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
+//
+//        return coords
+//    }
+//}

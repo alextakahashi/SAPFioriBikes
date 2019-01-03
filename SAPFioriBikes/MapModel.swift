@@ -27,9 +27,22 @@ class FioriBikeMapModel {
     
     weak var delegate: ViewController? = nil
     
-    let layerModel: [FUIGeometryLayer] = [FUIGeometryLayer(displayName: "Bikes")]
+    var layerModel: [FUIGeometryLayer] {
+        get {
+            var layers: [FUIGeometryLayer] = []
+            if stationModel.count > 0 {
+                layers.append(stationModel[0].layer)
+            }
+            if bartLineModel.count > 0 {
+                layers.append(bartLineModel[0].layer)
+            }
+            return layers
+        }
+    }
     
     var stationModel: [BikeStationAnnotation] = []
+    
+    var bartLineModel: [BartLineOverlay] = []
     
     func loadData(isLiveData: Bool = false) {
         isLiveData ? loadLiveData() : loadLocalData()
@@ -175,19 +188,40 @@ class FioriBikeMapModel {
     }
     
     private func loadBartData() {
-        
-        if let path = Bundle.main.path(forResource: "bart", ofType: "json") {
+        let operationQueue = OperationQueue()
+        operationQueue.addOperation {
             do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                let data = try Data(contentsOf: Bundle.main.url(forResource: "bart", withExtension: "geojson")!, options: [])
                 let request = try JSONDecoder().decode(BartPolylineRequest.self, from: data)
-                for feature in request.features {
-                    print("💙 \(feature.properties.name)")
+                DispatchQueue.main.async { [unowned self] in
+                    for feature in request.features {
+                        var locations: [CLLocation] = []
+                        for (index, segment) in feature.geometry.coordinates.enumerated() {
+                            for coordinate in segment {
+                                let location = CLLocation(latitude: coordinate[1], longitude: coordinate[0])
+                                locations.append(location)
+//                                print("❌ coordinate: \(location)")
+                            }
+                            var coordinates = locations.map({(location: CLLocation!) -> CLLocationCoordinate2D in return location.coordinate})
+                            let lineOverlay = BartLineOverlay(coordinates: &coordinates, count: locations.count)
+                            lineOverlay.name = feature.properties.name
+                            self.bartLineModel.append(lineOverlay)
+//                            if index == 3 {
+//                                break
+//                            }
+                        }
+//                        break
+                    }
+                    self.delegate?.reloadData()
                 }
-            } catch let jsonError {
-                // handle error
+
+            }
+            
+            catch let jsonError {
                 print("❌ \(jsonError)")
             }
         }
+
     }
 }
 
