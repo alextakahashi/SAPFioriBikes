@@ -1,28 +1,33 @@
-# SAPFioriBikes: Visualization of GoBike Stations with the SAP Fiori iOS SDK
+# SAPFioriBikes: Visualization of GoBike Stations Built with the SAP iOS SDK
+This blog describes a Ford GoBike app built with SAPFiori components that allows users to quickly and easily utilize the GoBike service by providing visualization of GoBike stations.
+The Ford GoBike map below clusters the stations into groups for easy accessibility:
 
 ![SAPFioriBikes iPhone](./ReadMeImages/No_Legend_iPhone.png?raw=true)
 
 [//]: # (Needs a public github link)
-> An implementation of the Ford GoBike map using the SAP Fiori iOS SDK.  Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
+> Check out the Ford GoBike map implementation [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
 # Inspiration
 
-If you are a Bay Area resident, you are sure to have come across the [Ford GoBike](https://www.fordgobike.com/) Stations.  Members of the service can pick up a bike and ride to any other station to redock.  This service provides a cheaper alternative to driving a car or using ride-share/carpooling and can be more convenient than waiting for public transit BART or Metro.  On top of that, since bikes must be docked, our streets are cleaner and more accessible rather than an obstacle course with scattered bikes and scooters ([Lime and Bike pushed out of SF](https://www.sfchronicle.com/business/article/Shut-out-of-San-Francisco-Lime-and-Bird-look-13242319.php)).  Especially with the [BART Transbay Tube Retrofit](https://www.bart.gov/about/projects/eqs/retrofit) starting February 2019, commuters are going to need as many options to get from one place to the other!
+San Francisco Bay Area residents are familiar with [Ford GoBike](https://www.fordgobike.com/) Stations.  Members of the service pick up a bike from one station then ride to and redock at another station.  This service provides a cost effective alternative to driving a car and ride-share options, and can be more convenient than waiting for public transit.  Additionally, since bikes must be docked, our streets are cleaner, more accessible, and less clutered compared to other bike and scooter options ([Lime and Bike pushed out of SF](https://www.sfchronicle.com/business/article/Shut-out-of-San-Francisco-Lime-and-Bird-look-13242319.php)).  Commuters are going to need as many options as possible to get from one place to the other,  especially during the [BART Transbay Tube Retrofit](https://www.bart.gov/about/projects/eqs/retrofit) starting February 2019.
 
-Looking at the Ford GoBike map, I noticed that it was cluttered with stations.  
+Looking at the Ford GoBike map below, I noticed that it was cluttered with stations that were indistinguishable:  
 
 ![Ford GoBike Map Cluttered Station](./ReadMeImages/Ford_Bikes_Unclustered.jpg?raw=true)
 
-Thankfully during WWDC 2017, MapKit introduced the [`MKClusterAnnotation`](https://developer.apple.com/documentation/mapkit/mkclusterannotation) which will consolidate annotations together.
+Fortunately during the Apple Worldwide Developers Confrence (WWDC 2017), MapKit introduced [`MKClusterAnnotation`](https://developer.apple.com/documentation/mapkit/mkclusterannotation) which consolidates annotations.
 
-The [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) app showed clusters of annotations (bicycle, tricycle, and unicycle) annotations that translated nicely to the Ford GoBike bikes and eBikes.
+The [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) app showed clusters of annotations (bicycle, tricycle, and unicycle) annotations that translated nicely to the Ford GoBike bikes and eBikes:
 
 ![TANDm Cluster Annotation Screen shot](./ReadMeImages/Tandm.png?raw=true)
 
-I used features from the [SAP Fiori iOS SDK](https://developer.apple.com/sap/) [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/), to provide the foundation of my application.  I make use of the `FUIMapToolbar` and `FUIMapLegend` to display annotations and what they mean.
+
 
 # Implementation
 
+I used features from:
+- [SAP Fiori iOS SDK](https://developer.apple.com/sap/) [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/) to provide the foundation of the application
+-  `FUIMapToolbar` and `FUIMapLegend` to display annotations and describe what they mean
 [//]: # (Needs a public github link)
 Follow along using the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes).  
 
@@ -41,9 +46,9 @@ Subclassing the `FUIMKMapFloorplanViewController` gives the `MKMapView`, `FUIMap
 
 ## Layers & Geometries
 
-Annotations in the `FUIMKMapFloorplanViewController` are shown in the map as geometries (`FUIAnnotation`) in geometry layers (`FUIGeometryLayer`).  Geometries include `MKAnnotation`s, `MKPolyline`s, and `MKPolygon`s. Organizing geometries by layer is convenient way to filter and organize data.
+Annotations in the `FUIMKMapFloorplanViewController` are shown in the map as geometries (`FUIAnnotation`) in geometry layers (`FUIGeometryLayer`).  Geometries include `MKAnnotation`s, `MKPolyline`s, and `MKPolygon`s. Organizing geometries by layer is a convenient way to filter and organize data.
 
-For the purpose of this example, we work with a simple model with a single layer.  We set the delegate in `viewDidLoad()` by setting
+For the purpose of this example, we work with a simple model with a single layer.  We set the delegate in `viewDidLoad()` by setting:
 
 ```swift
 self.dataSource = self
@@ -70,7 +75,7 @@ extension ViewController: FUIMKMapViewDataSource {
 
 ## Map Model
 
-The `FioriBikeMapModel` owns map business objects used in the `ViewController`.  The standard map business objects `title`, `region`, and `mapType` are set at the top.  In the `layerModel` there is a single layer, the `"Bikes"` layer.  The `stationModel` will contain all Ford GoBike Stations after it is populated by calling `loadData()`.  Optionally we can query real time data by setting the `isLiveData` to true within the function.  Private functions are located at the bottom, but the most important part is the call to the delegate at the very end.
+The `FioriBikeMapModel` owns map business objects used in the `ViewController`.  The standard map business objects `title`, `region`, and `mapType` are set at the top.  In the `layerModel` there is a single layer, the `"Bikes"` layer.  The `stationModel` will contain all Ford GoBike Stations once it is populated by calling `loadData()`.  Optionally we can query real-time data by setting the `isLiveData` to true within the function.  Private functions are located at the bottom, but the most important part is the call to the delegate at the very end.
 
 ```swift
 self.delegate?.reloadData()
@@ -80,7 +85,7 @@ This function call reloads the geometries and layers on the map.  At this point 
 
 ## BikeStationAnnotation
 
-A `BikeStationAnnotation`s are constructed while loading the `stationModel`.  Use in the `FUIMKMapFloorplanViewController` requires the annotation implement the `FUIAnnotation` protocol which requires a `state`, `layer`, and `indexPath`.  For simplicity's sake, we set them to a few default values.  We also store information we want to display on the map including the `coordinate`, `title`, `numBikes`, `numEBikes`, and `numDocsAvailable`.
+`BikeStationAnnotation`s are constructed while loading the `stationModel`.  Use in the `FUIMKMapFloorplanViewController` requires the annotation to implement the `FUIAnnotation` protocol which requires a `state`, `layer`, and `indexPath`.  For simplicity's sake, we set them to default values.  We also store information we want to display on the map including the `coordinate`, `title`, `numBikes`, `numEBikes`, and `numDocsAvailable`.
 
 ## BikeStationAnnotationView
 
@@ -90,7 +95,7 @@ The `BikeStationAnnotationView` takes inspiration from TANDm with their cluster 
 
 ![Clustered Annotations](./ReadMeImages/Zoom_Extent_Cluster.png?raw=true)
 
-Optionally, we can also get the total number of bikes and eBikes from all the clusters under this view by getting the `memberAnnotations`.  Tap the [Zoom Extent Button](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapToolbar/ZoomExtentButton.html) to show all the annotations in the map.  Looks like there are not any eBikes outside of San Francisco!  
+Optionally, we can also get the total number of bikes and eBikes from all the clusters under this view by getting the `memberAnnotations`.  Tap the [Zoom Extent Button](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapToolbar/ZoomExtentButton.html) to show all the annotations in the map.  Looks like there are not any eBikes outside of San Francisco.  
 
 ## iPad Support
 
@@ -113,4 +118,4 @@ In a future post I will extend this project to implement:
 
 ## Conclusion
 
-Maps at first glance can feel quite overwhelming! Maps can display an overwhelming amount of information and it is important to keep the user focus on the most relevant information.  The Map Floorplan provides the foundation for a robust map with a minimal amount of code on the developer's end.  
+At first glance maps can feel quite overwhelming since they can display an extensive amount of information. It is important to keep the user focus on the most relevant information.  The Map Floorplan provides the foundation for a robust map with a minimal amount of code on the developer's end.   
