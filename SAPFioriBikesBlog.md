@@ -13,7 +13,7 @@ San Francisco Bay Area residents are familiar with [Ford GoBike](https://www.for
 
 Looking at the Ford GoBike map below, I noticed that it was cluttered with stations that were indistinguishable:  
 
-![Ford GoBike Map Cluttered Station](./ReadMeImages/Ford_Bikes_Unclustered.jpg?raw=true)
+![Ford GoBike Map Cluttered Station](./ReadMeImages/Ford_Bikes_Unclustered.PNG?raw=true)
 
 Fortunately during the Apple Worldwide Developers Confrence (WWDC 2017), MapKit introduced [`MKClusterAnnotation`](https://developer.apple.com/documentation/mapkit/mkclusterannotation) which consolidates annotations.
 
