@@ -111,48 +111,22 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         return nil
     }
     
-//    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-//        print("✅ \(#function)")
-//        guard let fuiOverlay = overlay as? FUIOverlay else {
-//            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-//            polylineRenderer.strokeColor = UIColor.red.withAlphaComponent(0.5)
-//            polylineRenderer.lineWidth = 5
-//            return polylineRenderer
-//        }
-//        if let lineOverlay = overlay as? MKPolyline {
-//            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-//            return polylineRenderer
-//        }
-//        return MKPolylineRenderer()
-//    }
-    
-    var counter = 0
-    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        defer {
-            counter += 1
-        }
-        let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-        polylineRenderer.strokeColor = UIColor.red.withAlphaComponent(0.5)
-        polylineRenderer.lineWidth = 5
-        guard let bartOverlay = overlay as? BartLineOverlay else { return polylineRenderer }
-        var color: UIColor = UIColor.brown.withAlphaComponent(0.5)
-        switch counter {
-        case 0:
-            color = UIColor.purple.withAlphaComponent(0.5)
-        case 1:
-            color = UIColor.green.withAlphaComponent(0.5)
-        case 2:
-            color = UIColor.yellow.withAlphaComponent(0.5)
-        case 3:
-            color = UIColor.orange.withAlphaComponent(0.5)
-        case 4:
-            color = UIColor.cyan.withAlphaComponent(0.5)
+        switch overlay {
+        case is MKPolyline:
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = UIColor.blue.withAlphaComponent(0.6)
+            renderer.lineWidth = 2
+            return renderer
+        case is MKPolygon:
+            let renderer = MKPolygonRenderer(overlay: overlay)
+            renderer.strokeColor = UIColor.green.withAlphaComponent(0.6)
+            renderer.lineWidth = 1
+            renderer.fillColor = UIColor.green.withAlphaComponent(0.15)
+            return renderer
         default:
-            break
+            return MKOverlayRenderer()
         }
-        polylineRenderer.strokeColor = color
-        return polylineRenderer
     }
     
     var locationManager: CLLocationManager!
@@ -178,7 +152,6 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     
     override func reloadData() {
         super.reloadData()
-        print("🎉 number of overlays: \(mapView.overlays.count)")
     }
 }
 

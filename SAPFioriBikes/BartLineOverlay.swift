@@ -19,8 +19,16 @@ class BartLineOverlay: MKPolyline, FUIOverlay {
     var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: "Bart Line")
     
     var indexPath: IndexPath = IndexPath(index: -1, routeIndex: -1)
+}
 
-    var name: String = ""
+class BartStationOverlay: MKPolygon, FUIOverlay {
     
-    var color: UIColor = UIColor.blue.withAlphaComponent(0.5)
+    var overlayRenderer: [FUIMapFloorplan.State : MKOverlayRenderer] = [:]
+    
+    var state: FUIMapFloorplan.State = .default
+    
+    var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: "Bart Line")
+    
+    var indexPath: IndexPath = IndexPath(index: -1, routeIndex: -1)
+    
 }

@@ -8,6 +8,7 @@
 
 import MapKit
 import SAPFiori
+import StellarJay
 
 class FioriBikeMapModel {
     
@@ -42,7 +43,7 @@ class FioriBikeMapModel {
     
     var stationModel: [BikeStationAnnotation] = []
     
-    var bartLineModel: [BartLineOverlay] = []
+    var bartLineModel: [FUIOverlay] = []
     
     func loadData(isLiveData: Bool = false) {
         isLiveData ? loadLiveData() : loadLocalData()
@@ -188,40 +189,34 @@ class FioriBikeMapModel {
     }
     
     private func loadBartData() {
-        let operationQueue = OperationQueue()
-        operationQueue.addOperation {
-            do {
-                let data = try Data(contentsOf: Bundle.main.url(forResource: "bart", withExtension: "geojson")!, options: [])
-                let request = try JSONDecoder().decode(BartPolylineRequest.self, from: data)
-                DispatchQueue.main.async { [unowned self] in
-                    for feature in request.features {
-                        var locations: [CLLocation] = []
-                        for (index, segment) in feature.geometry.coordinates.enumerated() {
-                            for coordinate in segment {
-                                let location = CLLocation(latitude: coordinate[1], longitude: coordinate[0])
-                                locations.append(location)
-//                                print("❌ coordinate: \(location)")
-                            }
-                            var coordinates = locations.map({(location: CLLocation!) -> CLLocationCoordinate2D in return location.coordinate})
-                            let lineOverlay = BartLineOverlay(coordinates: &coordinates, count: locations.count)
-                            lineOverlay.name = feature.properties.name
-                            self.bartLineModel.append(lineOverlay)
-//                            if index == 3 {
-//                                break
-//                            }
-                        }
-//                        break
-                    }
-                    self.delegate?.reloadData()
-                }
-
-            }
-            
-            catch let jsonError {
-                print("❌ \(jsonError)")
+        let url: URL = Bundle.main.url(forResource: "bart", withExtension: "geojson")!
+        
+        var featureCollection: FeatureCollection<Feature<BartData.Line>>!
+        
+        do {
+            let data = try Data(contentsOf: url)
+            featureCollection = try JSONDecoder().decode(FeatureCollection<Feature<BartData.Line>>.self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        let polygons: [MKPolygon] = featureCollection.features.reduce(into: Array<MKPolygon>()) { prev, next in
+            guard let polygon = next.geometry as? Polygon else { return }
+            prev += polygon.coordinates.map {
+                return MKPolygon(coordinates: $0, count: $0.count)
             }
         }
-
+        let polygonOverlays: [FUIOverlay] = polygons.map({ return BartStationOverlay(points: $0.points(), count: $0.pointCount)})
+        self.bartLineModel.append(contentsOf: polygonOverlays)
+        
+        let polylines: [MKPolyline] = featureCollection.features.reduce(into: Array<MKPolyline>()) { prev, next in
+            guard let multiLineString = next.geometry as? MultiLineString else { return }
+            prev += multiLineString.toMKPolylines()
+        }
+        let polylineOverlays: [FUIOverlay] = polylines.map({ return BartLineOverlay(points: $0.points(), count: $0.pointCount) })
+        self.bartLineModel.append(contentsOf: polylineOverlays)
+        self.delegate?.reloadData()
     }
 }
 
