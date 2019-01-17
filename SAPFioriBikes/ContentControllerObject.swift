@@ -37,7 +37,7 @@ extension ContentControllerObject: UITableViewDataSource {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FUIMapDetailTagObjectTableViewCell.reuseIdentifier) as? FUIMapDetailTagObjectTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = .clear
-            cell.tags = ["Bikes: \(station.numBikes)", "EBikes: \(station.numEBikes)"]
+            cell.tags = ["Bikes: \(station.numBikes)", "EBikes: \(station.numEBikes)"].map({ return FUITagText($0) })
             cell.footnoteText = "Bikes " + (station.numBikes > 0 ? "Available" : "Unavailable")
             cell.footnoteLabel.textColor = station.numBikes > 0 ? UIColor.preferredFioriColor(forStyle: .positive) : UIColor.preferredFioriColor(forStyle: .negative)
             cell.statusImage = UIImage(named: "bicycle")
@@ -48,7 +48,7 @@ extension ContentControllerObject: UITableViewDataSource {
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: FUIMapDetailTagObjectTableViewCell.reuseIdentifier) as? FUIMapDetailTagObjectTableViewCell else { return UITableViewCell() }
             cell.backgroundColor = .clear
-            cell.tags = ["Docs: \(station.numDocsAvailable)"]
+            cell.tags = ["Docs: \(station.numDocsAvailable)"].map({ return FUITagText($0) })
             cell.footnoteText = "Docs " + (station.numDocsAvailable > 0 ? "Available" : "Unavailable")
             cell.footnoteLabel.textColor = station.numDocsAvailable > 0 ? UIColor.preferredFioriColor(forStyle: .positive) : UIColor.preferredFioriColor(forStyle: .negative)
             cell.statusImage = FUIIconLibrary.map.panel.point.withRenderingMode(.alwaysTemplate)
