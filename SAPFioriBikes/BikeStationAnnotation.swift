@@ -12,7 +12,7 @@ import SAPFiori
 
 class BikeStationAnnotation: NSObject, FUIAnnotation {
     
-    static var displayName = "Bikes"
+    static var displayName = Layer.bikes
     
     var state: FUIMapFloorplan.State  = .default
     

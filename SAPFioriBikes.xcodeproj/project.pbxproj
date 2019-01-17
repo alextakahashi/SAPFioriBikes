@@ -25,12 +25,15 @@
 		AA9C0DCE21A4F9FB001AC4D6 /* StationInformationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C0DCD21A4F9FB001AC4D6 /* StationInformationRequest.swift */; };
 		AA9C0DD021A4FA48001AC4D6 /* StationStatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C0DCF21A4FA48001AC4D6 /* StationStatusRequest.swift */; };
 		AABA53CF21D76B1C0097715E /* bart.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AABA53CE21D76B1C0097715E /* bart.geojson */; };
+		AABC859521F010D90042F864 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABC859421F010D90042F864 /* SettingsViewController.swift */; };
+		AABC859A21F017110042F864 /* LayerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABC859921F017110042F864 /* LayerEnum.swift */; };
 		AAC435A6219D530E006106B7 /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; };
 		AAC435A7219D530E006106B7 /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC435A3219D5301006106B7 /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAC435AA219D530E006106B7 /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; };
 		AAC435AB219D530E006106B7 /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAC4DFD521D7603600924692 /* BartRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC4DFD421D7603600924692 /* BartRequest.swift */; };
 		AAC77CE021D89B0F00EC548C /* BartLineOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */; };
+		AAF5C39621EF0F6300876D0E /* BartData_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5C39521EF0F6300876D0E /* BartData_model.swift */; };
 		AAF90F5A21D565D200540479 /* SearchResultsControllerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */; };
 /* End PBXBuildFile section */
 
@@ -124,10 +127,13 @@
 		AA9C0DCD21A4F9FB001AC4D6 /* StationInformationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInformationRequest.swift; sourceTree = "<group>"; };
 		AA9C0DCF21A4FA48001AC4D6 /* StationStatusRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationStatusRequest.swift; sourceTree = "<group>"; };
 		AABA53CE21D76B1C0097715E /* bart.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = bart.geojson; sourceTree = "<group>"; };
+		AABC859421F010D90042F864 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AABC859921F017110042F864 /* LayerEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayerEnum.swift; sourceTree = "<group>"; };
 		AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPFiori.xcodeproj; path = ../../com.sap.mobile.platform.client.hcp.sdk.ios.ui/src/Frameworks/SAPFiori/SAPFiori.xcodeproj; sourceTree = "<group>"; };
 		AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPCommon.xcodeproj; path = "../../com.sap.mobile.apps.mentor/platform-sdk/foundation/src/Frameworks/SAPCommon/SAPCommon.xcodeproj"; sourceTree = "<group>"; };
 		AAC4DFD421D7603600924692 /* BartRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartRequest.swift; sourceTree = "<group>"; };
 		AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartLineOverlay.swift; sourceTree = "<group>"; };
+		AAF5C39521EF0F6300876D0E /* BartData_model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartData_model.swift; sourceTree = "<group>"; };
 		AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsControllerObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -176,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				AA62D460219D39DB00F4931C /* ViewController.swift */,
+				AABC859421F010D90042F864 /* SettingsViewController.swift */,
 				AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */,
 				AA5B00BE21D5B7EA00355128 /* ContentControllerObject.swift */,
 				AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */,
@@ -207,6 +214,8 @@
 				AA9C0DCD21A4F9FB001AC4D6 /* StationInformationRequest.swift */,
 				AABA53CE21D76B1C0097715E /* bart.geojson */,
 				AAC4DFD421D7603600924692 /* BartRequest.swift */,
+				AAF5C39521EF0F6300876D0E /* BartData_model.swift */,
+				AABC859921F017110042F864 /* LayerEnum.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -399,10 +408,13 @@
 				AA9C0DCE21A4F9FB001AC4D6 /* StationInformationRequest.swift in Sources */,
 				AA5B00BF21D5B7EA00355128 /* ContentControllerObject.swift in Sources */,
 				AAC77CE021D89B0F00EC548C /* BartLineOverlay.swift in Sources */,
+				AABC859521F010D90042F864 /* SettingsViewController.swift in Sources */,
 				AA6A4B1D21A4A06C00C34319 /* Colors.swift in Sources */,
 				AA62D467219D39DB00F4931C /* SAPFioriBikes.xcdatamodeld in Sources */,
 				AA62D483219D3AEB00F4931C /* BikeStationAnnotation.swift in Sources */,
+				AABC859A21F017110042F864 /* LayerEnum.swift in Sources */,
 				AA9C0DD021A4FA48001AC4D6 /* StationStatusRequest.swift in Sources */,
+				AAF5C39621EF0F6300876D0E /* BartData_model.swift in Sources */,
 				AA51BBE8219E9A9A004B482C /* BikeStationAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

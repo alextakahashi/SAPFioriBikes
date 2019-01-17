@@ -28,22 +28,44 @@ class FioriBikeMapModel {
     
     weak var delegate: ViewController? = nil
     
-    var layerModel: [FUIGeometryLayer] {
+    var layerModel: [FUIGeometryLayer] = [
+        FUIGeometryLayer(displayName: Layer.bikes),
+        FUIGeometryLayer(displayName: Layer.bart)
+    ]
+    
+    var layerIsEnabled: [Bool] {
         get {
-            var layers: [FUIGeometryLayer] = []
-            if stationModel.count > 0 {
-                layers.append(stationModel[0].layer)
-            }
-            if bartLineModel.count > 0 {
-                layers.append(bartLineModel[0].layer)
-            }
-            return layers
+            return [stationIsEnabled, bartLineIsEnabled]
+        }
+        set {
+            guard newValue.count == layerModel.count else { preconditionFailure() }
+            stationIsEnabled = newValue[0]
+            bartLineIsEnabled = newValue[1]
+            self.delegate?.reloadData()
         }
     }
     
-    var stationModel: [BikeStationAnnotation] = []
+    private var _stationModel: [BikeStationAnnotation] = []
     
-    var bartLineModel: [FUIOverlay] = []
+    public var stationIsEnabled: Bool = true
+    
+    public var stationModel: [BikeStationAnnotation] {
+        get {
+            guard stationIsEnabled else { return [] }
+            return _stationModel
+        }
+    }
+    
+    public var bartLineIsEnabled: Bool = true
+    
+    private var _bartLineMode: [FUIOverlay] = []
+    
+    public var bartLineModel: [FUIOverlay] {
+        get {
+            guard bartLineIsEnabled else { return [] }
+            return _bartLineMode
+        }
+    }
     
     func loadData(isLiveData: Bool = false) {
         isLiveData ? loadLiveData() : loadLocalData()
@@ -56,7 +78,7 @@ class FioriBikeMapModel {
             for station in stationModel {
                 station.distanceToUser = userLocation.distance(from: station.coordinate)
             }
-            stationModel.sort(by: { return Double($0.distanceToUser!) < Double($1.distanceToUser!) })
+            _stationModel.sort(by: { return Double($0.distanceToUser!) < Double($1.distanceToUser!) })
         }
     }
     
@@ -146,7 +168,7 @@ class FioriBikeMapModel {
             for station in self.stationStatusModel {
                 self.merge(station)
             }
-            self.stationModel = self.stationDictionary.map({ return $0.value })
+            self._stationModel = self.stationDictionary.map({ return $0.value })
             self.delegate?.reloadData()
         }   catch let jsonError {
             print("❌ \(jsonError)")
@@ -161,7 +183,7 @@ class FioriBikeMapModel {
             for station in self.stationInformationModel {
                 self.merge(station)
             }
-            self.stationModel = self.stationDictionary.map({ return $0.value })
+            self._stationModel = self.stationDictionary.map({ return $0.value })
             self.delegate?.reloadData()
         }   catch let jsonError {
             print("❌ \(jsonError)")
@@ -208,14 +230,14 @@ class FioriBikeMapModel {
             }
         }
         let polygonOverlays: [FUIOverlay] = polygons.map({ return BartStationOverlay(points: $0.points(), count: $0.pointCount)})
-        self.bartLineModel.append(contentsOf: polygonOverlays)
+        self._bartLineMode.append(contentsOf: polygonOverlays)
         
         let polylines: [MKPolyline] = featureCollection.features.reduce(into: Array<MKPolyline>()) { prev, next in
             guard let multiLineString = next.geometry as? MultiLineString else { return }
             prev += multiLineString.toMKPolylines()
         }
         let polylineOverlays: [FUIOverlay] = polylines.map({ return BartLineOverlay(points: $0.points(), count: $0.pointCount) })
-        self.bartLineModel.append(contentsOf: polylineOverlays)
+        self._bartLineMode.append(contentsOf: polylineOverlays)
         self.delegate?.reloadData()
     }
 }

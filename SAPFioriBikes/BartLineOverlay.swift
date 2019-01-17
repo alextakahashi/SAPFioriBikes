@@ -16,7 +16,7 @@ class BartLineOverlay: MKPolyline, FUIOverlay {
     
     var state: FUIMapFloorplan.State = .default
     
-    var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: "Bart Line")
+    var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: Layer.bart)
     
     var indexPath: IndexPath = IndexPath(index: -1, routeIndex: -1)
 }
@@ -27,7 +27,7 @@ class BartStationOverlay: MKPolygon, FUIOverlay {
     
     var state: FUIMapFloorplan.State = .default
     
-    var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: "Bart Line")
+    var layer: FUIGeometryLayer = FUIGeometryLayer(displayName: Layer.bart)
     
     var indexPath: IndexPath = IndexPath(index: -1, routeIndex: -1)
     

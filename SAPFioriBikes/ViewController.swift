@@ -29,6 +29,9 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         }
     }
     
+    // MARK: Settings
+    var retainedSettingsController: SettingsViewController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +74,10 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         detailPanel.searchResults.searchBar.delegate = searchResultsObject
         detailPanel.content.tableView.register(FUIMapDetailTagObjectTableViewCell.self, forCellReuseIdentifier: FUIMapDetailTagObjectTableViewCell.reuseIdentifier)
         detailPanel.content.tableView.register(FUIMapDetailPanel.ButtonTableViewCell.self, forCellReuseIdentifier: FUIMapDetailPanel.ButtonTableViewCell.reuseIdentifier)
+        
+        // MARK: Settings
+        retainedSettingsController = SettingsViewController(mapModel)
+        settingsController = retainedSettingsController
     }
     
     internal func pushContent(_ bikeStationAnnotation: BikeStationAnnotation) {
@@ -133,6 +140,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     var currentLocation: CLLocation? {
         didSet {
             mapModel.userLocation = currentLocation
+            detailPanel.searchResults.tableView.reloadData()
         }
     }
     
@@ -161,9 +169,9 @@ extension ViewController: FUIMKMapViewDataSource {
     
     func mapView(_ mapView: MKMapView, geometriesForLayer layer: FUIGeometryLayer) -> [FUIAnnotation] {
         switch layer.displayName {
-        case "Bikes":
+        case Layer.bikes:
             return mapModel.stationModel
-        case "Bart Line":
+        case Layer.bart:
             return mapModel.bartLineModel
         default:
             preconditionFailure()
@@ -178,16 +186,3 @@ extension ViewController: FUIMKMapViewDataSource {
         return mapModel.layerModel[index]
     }
 }
-
-// ¹: https://stackoverflow.com/questions/25449469/show-current-location-and-update-location-in-mkmapview-in-swift
-
-//public extension MKMultiPoint {
-//    var coordinates: [CLLocationCoordinate2D] {
-//        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid,
-//                                              count: pointCount)
-//
-//        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
-//
-//        return coords
-//    }
-//}
