@@ -122,14 +122,14 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         switch overlay {
         case is MKPolyline:
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = UIColor.blue.withAlphaComponent(0.6)
+            renderer.strokeColor = Colors.bartDefaultBlue.withAlphaComponent(0.6)
             renderer.lineWidth = 2
             return renderer
         case is MKPolygon:
             let renderer = MKPolygonRenderer(overlay: overlay)
-            renderer.strokeColor = UIColor.green.withAlphaComponent(0.6)
+            renderer.strokeColor = Colors.bartBlue.withAlphaComponent(0.6)
             renderer.lineWidth = 1
-            renderer.fillColor = UIColor.green.withAlphaComponent(0.15)
+            renderer.fillColor = Colors.bartBlue.withAlphaComponent(0.15)
             return renderer
         default:
             return MKOverlayRenderer()
