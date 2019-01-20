@@ -32,6 +32,7 @@
 		AAC435AA219D530E006106B7 /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; };
 		AAC435AB219D530E006106B7 /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAC4359A219D52F8006106B7 /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AAC77CE021D89B0F00EC548C /* BartLineOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */; };
+		AAEB161821F518ED001E28C3 /* CreateGeometryResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEB161721F518ED001E28C3 /* CreateGeometryResultsController.swift */; };
 		AAF5C39621EF0F6300876D0E /* BartData_model.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5C39521EF0F6300876D0E /* BartData_model.swift */; };
 		AAF90F5A21D565D200540479 /* SearchResultsControllerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		AAC43594219D52F8006106B7 /* SAPFiori.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPFiori.xcodeproj; path = ../../com.sap.mobile.platform.client.hcp.sdk.ios.ui/src/Frameworks/SAPFiori/SAPFiori.xcodeproj; sourceTree = "<group>"; };
 		AAC4359D219D5301006106B7 /* SAPCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SAPCommon.xcodeproj; path = "../../com.sap.mobile.apps.mentor/platform-sdk/foundation/src/Frameworks/SAPCommon/SAPCommon.xcodeproj"; sourceTree = "<group>"; };
 		AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartLineOverlay.swift; sourceTree = "<group>"; };
+		AAEB161721F518ED001E28C3 /* CreateGeometryResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGeometryResultsController.swift; sourceTree = "<group>"; };
 		AAF5C39521EF0F6300876D0E /* BartData_model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BartData_model.swift; sourceTree = "<group>"; };
 		AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsControllerObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				AA62D460219D39DB00F4931C /* ViewController.swift */,
+				AAEB161721F518ED001E28C3 /* CreateGeometryResultsController.swift */,
 				AA6A4B2021A4A08800C34319 /* MapModel.swift */,
 				AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */,
 				AA5B00BE21D5B7EA00355128 /* ContentControllerObject.swift */,
@@ -403,6 +406,7 @@
 				AA62D45F219D39DB00F4931C /* AppDelegate.swift in Sources */,
 				AA9C0DCE21A4F9FB001AC4D6 /* StationInformationRequest.swift in Sources */,
 				AA5B00BF21D5B7EA00355128 /* ContentControllerObject.swift in Sources */,
+				AAEB161821F518ED001E28C3 /* CreateGeometryResultsController.swift in Sources */,
 				AAC77CE021D89B0F00EC548C /* BartLineOverlay.swift in Sources */,
 				AABC859521F010D90042F864 /* SettingsViewController.swift in Sources */,
 				AA6A4B1D21A4A06C00C34319 /* Colors.swift in Sources */,

@@ -11,4 +11,5 @@ import Foundation
 enum Layer {
     static var bikes = "Bikes Layer"
     static var bart = "Bart Layer"
+    static var custom = "Custom Layer"
 }

@@ -32,6 +32,24 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     // MARK: Settings
     var retainedSettingsController: SettingsViewController!
     
+    var walkZoneItem: FUIMapLegendItem = {
+        var item = FUIMapLegendItem(title: "Walk Zone")
+        let image = FUIAttributedImage(image: FUIIconLibrary.map.marker.walk.withRenderingMode(.alwaysTemplate))
+        image.tintColor = .white
+        item.icon = FUIMapLegendIcon(glyphImage: image)
+        item.backgroundColor = Colors.red
+        return item
+    }()
+    
+    var bikePathItem: FUIMapLegendItem = {
+        var item = FUIMapLegendItem(title: "Bike Path")
+        guard let bicycleImage = UIImage(named: "bicycle") else { return item }
+        let image = FUIAttributedImage(image: bicycleImage.withRenderingMode(.alwaysTemplate))
+        image.tintColor = .white
+        item.icon = FUIMapLegendIcon(glyphImage: image)
+        item.backgroundColor = Colors.red
+        return item
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +96,41 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         // MARK: Settings
         retainedSettingsController = SettingsViewController(mapModel)
         settingsController = retainedSettingsController
+        
+        
+        // MARK: Editing
+        self.isEditable = true
+        self.editingPanel.createGeometryItems = [walkZoneItem, bikePathItem]
+        self.editingPanel.createGeometryResultsController = CreateGeometryResultsController()
+        self.editingPanel.willShowCreateGeometryResultsController = { [unowned self] vc in
+            if let createGeometryResultsController = vc as? CreateGeometryResultsController {
+                createGeometryResultsController.editingGeometry = self.editingGeometry
+            }
+        }
+        self.editingPanel.didCommitGeometryResults = { [unowned self] shape, createObject in
+            if let point = shape as? MKPointAnnotation {
+                print("Added point")
+//                self.mapModel.customModel.append(MKPointAnnotation(coordinate: point.coordinate))
+            } else if let polyline = shape as? MKPolyline {
+                print("Added polyline")
+                self.mapModel.customModel.append(BartLineOverlay(points: polyline.points(), count: polyline.pointCount))
+            } else if let polygon = shape as? MKPolygon {
+                print("Added polygon")
+                self.mapModel.customModel.append(BartStationOverlay(points: polygon.points(), count: polygon.pointCount))
+            }
+            self.reloadData()
+        }
+        self.editingPanel.didChangeBaseMapType = { [unowned self] type in
+            switch type {
+            case .satellite:
+                self.colorScheme = .dark
+            default:
+                self.colorScheme = .light
+            }
+        }
+        self.editingPanel.didDismissGeometryResultsController = { (_, _) in
+//            self.reloadData()
+        }
     }
     
     internal func pushContent(_ bikeStationAnnotation: BikeStationAnnotation) {
@@ -173,6 +226,8 @@ extension ViewController: FUIMKMapViewDataSource {
             return mapModel.stationModel
         case Layer.bart:
             return mapModel.bartLineModel
+        case Layer.custom:
+            return mapModel.customModel
         default:
             preconditionFailure()
         }

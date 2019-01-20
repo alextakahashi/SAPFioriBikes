@@ -30,7 +30,8 @@ class FioriBikeMapModel {
     
     var layerModel: [FUIGeometryLayer] = [
         FUIGeometryLayer(displayName: Layer.bikes),
-        FUIGeometryLayer(displayName: Layer.bart)
+        FUIGeometryLayer(displayName: Layer.bart),
+        FUIGeometryLayer(displayName: Layer.custom)
     ]
     
     var layerIsEnabled: [Bool] {
@@ -66,6 +67,8 @@ class FioriBikeMapModel {
             return _bartLineMode
         }
     }
+    
+    public var customModel: [FUIAnnotation] = []
     
     func loadData(isLiveData: Bool = false) {
         isLiveData ? loadLiveData() : loadLocalData()
