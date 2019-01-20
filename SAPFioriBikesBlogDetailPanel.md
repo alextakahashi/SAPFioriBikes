@@ -2,7 +2,7 @@
 
 > Extending the SAPFioriBikes project with the MapFloorplan DetailPanel. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
-This project follows up the original [SAPFioriBikes Blog](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by configuring the Search Results View Controller and Content View Controller.
+This project follows up with the original [SAPFioriBikes Blog](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by configuring the Search Results View Controller and Content View Controller.
 
 ## Finding the Closest Station
 
