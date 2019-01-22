@@ -23,6 +23,7 @@ class CreateGeometryResultsController: UITableViewController {
         super.viewDidLoad()
         self.tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: FUIObjectTableViewCell.reuseIdentifier)
         self.tableView.register(FUIMapSnapshotFormCell.self, forCellReuseIdentifier: FUIMapSnapshotFormCell.reuseIdentifier)
+        self.tableView.cellLayoutMarginsFollowReadableWidth = true
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -33,7 +33,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     var retainedSettingsController: SettingsViewController!
     
     var walkZoneItem: FUIMapLegendItem = {
-        var item = FUIMapLegendItem(title: "Walk Zone")
+        var item = FUIMapLegendItem(title: Layer.Editing.walkZone)
         let image = FUIAttributedImage(image: FUIIconLibrary.map.marker.walk.withRenderingMode(.alwaysTemplate))
         image.tintColor = .white
         item.icon = FUIMapLegendIcon(glyphImage: image)
@@ -42,12 +42,26 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     }()
     
     var bikePathItem: FUIMapLegendItem = {
-        var item = FUIMapLegendItem(title: "Bike Path")
+        var item = FUIMapLegendItem(title: Layer.Editing.bikePath)
         guard let bicycleImage = UIImage(named: "bicycle") else { return item }
         let image = FUIAttributedImage(image: bicycleImage.withRenderingMode(.alwaysTemplate))
         image.tintColor = .white
         item.icon = FUIMapLegendIcon(glyphImage: image)
         item.backgroundColor = Colors.red
+        return item
+    }()
+    
+    var breweryItem: FUIMapLegendItem = {
+        var item = FUIMapLegendItem(title: Layer.Editing.brewery)
+        item.icon = FUIMapLegendIcon(glyphImage: "🍻")
+        return item
+    }()
+    
+    var venueItem: FUIMapLegendItem = {
+        var item = FUIMapLegendItem(title: Layer.Editing.venue)
+        let image = FUIAttributedImage(image: FUIIconLibrary.map.marker.venue.withRenderingMode(.alwaysTemplate))
+        image.tintColor = .white
+        item.icon = FUIMapLegendIcon(glyphImage: image)
         return item
     }()
     
@@ -64,6 +78,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         mapView.setRegion(mapModel.region, animated: true)
         mapView.mapType = mapModel.mapType
         mapView.register(BikeStationAnnotationView.self, forAnnotationViewWithReuseIdentifier: "BikeStationAnnotationView")
+        mapView.register(FUIMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "FUIMarkerAnnotationView")
         mapView.showsUserLocation = true
         locationManager = CLLocationManager() //¹
         locationManager.delegate = self
@@ -100,7 +115,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         
         // MARK: Editing
         self.isEditable = true
-        self.editingPanel.createGeometryItems = [walkZoneItem, bikePathItem]
+        self.editingPanel.createGeometryItems = [walkZoneItem, bikePathItem, breweryItem, venueItem]
         self.editingPanel.createGeometryResultsController = CreateGeometryResultsController()
         self.editingPanel.willShowCreateGeometryResultsController = { [unowned self] vc in
             if let createGeometryResultsController = vc as? CreateGeometryResultsController {
@@ -108,15 +123,16 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
             }
         }
         self.editingPanel.didCommitGeometryResults = { [unowned self] shape, createObject in
+            let isVenueItem = createObject.title == Layer.Editing.venue
             if let point = shape as? MKPointAnnotation {
-                print("Added point")
-//                self.mapModel.customModel.append(MKPointAnnotation(coordinate: point.coordinate))
+                let pointItem: FUIAnnotation = isVenueItem ? VenueAnnotation(coordinate: point.coordinate) : BreweryAnnotation(coordinate: point.coordinate)
+                self.mapModel.editingModel.append(pointItem)
             } else if let polyline = shape as? MKPolyline {
-                print("Added polyline")
-                self.mapModel.customModel.append(BartLineOverlay(points: polyline.points(), count: polyline.pointCount))
+                let polylineItem: FUIOverlay = isVenueItem ? VenueLineOverlay(points: polyline.points(), count: polyline.pointCount) : BikePathOverlay(points: polyline.points(), count: polyline.pointCount)
+                self.mapModel.editingModel.append(polylineItem)
             } else if let polygon = shape as? MKPolygon {
-                print("Added polygon")
-                self.mapModel.customModel.append(BartStationOverlay(points: polygon.points(), count: polygon.pointCount))
+                let polygonItem: FUIOverlay = isVenueItem ? VenuePolygonOverlay(points: polygon.points(), count: polygon.pointCount) : WalkZoneOverlay(points: polygon.points(), count: polygon.pointCount)
+                self.mapModel.editingModel.append(polygonItem)
             }
             self.reloadData()
         }
@@ -128,8 +144,26 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
                 self.colorScheme = .light
             }
         }
-        self.editingPanel.didDismissGeometryResultsController = { (_, _) in
-//            self.reloadData()
+    }
+    
+    override func editingPanelWillAppear(createItem: FUIMapLegendItem) {
+        switch createItem.title {
+        case Layer.Editing.walkZone:
+            editingPanel.isCreatePointEnabled = false
+            editingPanel.isCreatePolylineEnabled = false
+            editingPanel.isCreatePolygonEnabled = true
+        case Layer.Editing.bikePath:
+            editingPanel.isCreatePointEnabled = false
+            editingPanel.isCreatePolylineEnabled = true
+            editingPanel.isCreatePolygonEnabled = false
+        case Layer.Editing.brewery:
+            editingPanel.isCreatePointEnabled = true
+            editingPanel.isCreatePolylineEnabled = false
+            editingPanel.isCreatePolygonEnabled = false
+        default:
+            editingPanel.isCreatePointEnabled = true
+            editingPanel.isCreatePolylineEnabled = true
+            editingPanel.isCreatePolygonEnabled = true
         }
     }
     
@@ -149,6 +183,14 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let _ = annotation as? MKUserLocation { return nil }
+        if annotation is BreweryAnnotation || annotation is VenueAnnotation {
+            let isVenueAnnotation = annotation is VenueAnnotation
+            guard let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "FUIMarkerAnnotationView") as? FUIMarkerAnnotationView else { return nil}
+            annotationView.glyphImage = isVenueAnnotation ? FUIIconLibrary.map.marker.venue : nil
+            annotationView.glyphText = isVenueAnnotation ? nil : "🍻"
+            annotationView.markerTintColor = isVenueAnnotation ? UIColor.purple : UIColor.preferredFioriColor(forStyle: .map1)
+            return annotationView
+        }
         guard !(annotation is MKClusterAnnotation) else {
             if isClusteringStations {
                 let clusterAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView
@@ -175,14 +217,34 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         switch overlay {
         case is MKPolyline:
             let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = Colors.bartDefaultBlue.withAlphaComponent(0.6)
             renderer.lineWidth = 2
+            switch overlay {
+            case is BartLineOverlay:
+                renderer.strokeColor = Colors.bartDefaultBlue.withAlphaComponent(0.6)
+            case is BikePathOverlay:
+                renderer.strokeColor = Colors.stravaOrange
+            case is VenueLineOverlay:
+                renderer.strokeColor = UIColor.purple
+            default:
+                break
+            }
             return renderer
         case is MKPolygon:
             let renderer = MKPolygonRenderer(overlay: overlay)
-            renderer.strokeColor = Colors.bartBlue.withAlphaComponent(0.6)
             renderer.lineWidth = 1
-            renderer.fillColor = Colors.bartBlue.withAlphaComponent(0.15)
+            switch overlay {
+            case is BartStationOverlay:
+                renderer.strokeColor = Colors.bartBlue
+                renderer.fillColor = Colors.bartBlue.withAlphaComponent(0.15)
+            case is WalkZoneOverlay:
+                renderer.strokeColor = Colors.slowZoneYellow
+                renderer.fillColor = Colors.slowZoneYellow.withAlphaComponent(0.5)
+            case is VenuePolygonOverlay:
+                renderer.strokeColor = UIColor.purple
+                renderer.fillColor = UIColor.purple.withAlphaComponent(0.15)
+            default:
+                break
+            }
             return renderer
         default:
             return MKOverlayRenderer()
@@ -227,7 +289,7 @@ extension ViewController: FUIMKMapViewDataSource {
         case Layer.bart:
             return mapModel.bartLineModel
         case Layer.custom:
-            return mapModel.customModel
+            return mapModel.editingModel
         default:
             preconditionFailure()
         }

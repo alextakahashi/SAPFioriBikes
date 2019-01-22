@@ -68,7 +68,7 @@ class FioriBikeMapModel {
         }
     }
     
-    public var customModel: [FUIAnnotation] = []
+    public var editingModel: [FUIAnnotation] = []
     
     func loadData(isLiveData: Bool = false) {
         isLiveData ? loadLiveData() : loadLocalData()
