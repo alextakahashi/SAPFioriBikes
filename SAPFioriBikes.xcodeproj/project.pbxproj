@@ -190,19 +190,13 @@
 			isa = PBXGroup;
 			children = (
 				AA62D460219D39DB00F4931C /* ViewController.swift */,
-				AAEB161721F518ED001E28C3 /* CreateGeometryResultsController.swift */,
 				AA6A4B2021A4A08800C34319 /* MapModel.swift */,
 				AAF90F5921D565D200540479 /* SearchResultsControllerObject.swift */,
 				AA5B00BE21D5B7EA00355128 /* ContentControllerObject.swift */,
 				AABC859421F010D90042F864 /* SettingsViewController.swift */,
-				AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */,
-				AA62D482219D3AEB00F4931C /* BikeStationAnnotation.swift */,
-				AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */,
-				AA2EAD3F21F7A63E00A18856 /* BikePathOverlay.swift */,
-				AAF6FB8A21F7D63E007B4697 /* VenueOverlay.swift */,
-				AA2EAD3A21F7A31B00A18856 /* WalkZoneOverlay.swift */,
-				AA2EAD4121F7AC5100A18856 /* BreweryAnnotation.swift */,
+				AAEB161721F518ED001E28C3 /* CreateGeometryResultsController.swift */,
 				AA62D46D219D39DE00F4931C /* Info.plist */,
+				AAF6FB8F21F7E0B5007B4697 /* Annotations-Overlays */,
 				AA62D481219D3AD900F4931C /* DataModel */,
 				AA9C0DD121A4FC37001AC4D6 /* Utils */,
 			);
@@ -261,6 +255,20 @@
 				AAC435A5219D5301006106B7 /* SAPCommonTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AAF6FB8F21F7E0B5007B4697 /* Annotations-Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				AA51BBE7219E9A9A004B482C /* BikeStationAnnotationView.swift */,
+				AA62D482219D3AEB00F4931C /* BikeStationAnnotation.swift */,
+				AAC77CDF21D89B0F00EC548C /* BartLineOverlay.swift */,
+				AA2EAD3F21F7A63E00A18856 /* BikePathOverlay.swift */,
+				AAF6FB8A21F7D63E007B4697 /* VenueOverlay.swift */,
+				AA2EAD3A21F7A31B00A18856 /* WalkZoneOverlay.swift */,
+				AA2EAD4121F7AC5100A18856 /* BreweryAnnotation.swift */,
+			);
+			path = "Annotations-Overlays";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

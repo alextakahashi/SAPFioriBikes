@@ -32,39 +32,6 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
     // MARK: Settings
     var retainedSettingsController: SettingsViewController!
     
-    var walkZoneItem: FUIMapLegendItem = {
-        var item = FUIMapLegendItem(title: Layer.Editing.walkZone)
-        let image = FUIAttributedImage(image: FUIIconLibrary.map.marker.walk.withRenderingMode(.alwaysTemplate))
-        image.tintColor = .white
-        item.icon = FUIMapLegendIcon(glyphImage: image)
-        item.backgroundColor = Colors.red
-        return item
-    }()
-    
-    var bikePathItem: FUIMapLegendItem = {
-        var item = FUIMapLegendItem(title: Layer.Editing.bikePath)
-        guard let bicycleImage = UIImage(named: "bicycle") else { return item }
-        let image = FUIAttributedImage(image: bicycleImage.withRenderingMode(.alwaysTemplate))
-        image.tintColor = .white
-        item.icon = FUIMapLegendIcon(glyphImage: image)
-        item.backgroundColor = Colors.red
-        return item
-    }()
-    
-    var breweryItem: FUIMapLegendItem = {
-        var item = FUIMapLegendItem(title: Layer.Editing.brewery)
-        item.icon = FUIMapLegendIcon(glyphImage: "🍻")
-        return item
-    }()
-    
-    var venueItem: FUIMapLegendItem = {
-        var item = FUIMapLegendItem(title: Layer.Editing.venue)
-        let image = FUIAttributedImage(image: FUIIconLibrary.map.marker.venue.withRenderingMode(.alwaysTemplate))
-        image.tintColor = .white
-        item.icon = FUIMapLegendIcon(glyphImage: image)
-        return item
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -115,7 +82,7 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         
         // MARK: Editing
         self.isEditable = true
-        self.editingPanel.createGeometryItems = [walkZoneItem, bikePathItem, breweryItem, venueItem]
+        self.editingPanel.createGeometryItems = mapModel.editingItemsModel
         self.editingPanel.createGeometryResultsController = CreateGeometryResultsController()
         self.editingPanel.willShowCreateGeometryResultsController = { [unowned self] vc in
             if let createGeometryResultsController = vc as? CreateGeometryResultsController {
@@ -126,13 +93,13 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
             let isVenueItem = createObject.title == Layer.Editing.venue
             if let point = shape as? MKPointAnnotation {
                 let pointItem: FUIAnnotation = isVenueItem ? VenueAnnotation(coordinate: point.coordinate) : BreweryAnnotation(coordinate: point.coordinate)
-                self.mapModel.editingModel.append(pointItem)
+                self.mapModel._editingModel.append(pointItem)
             } else if let polyline = shape as? MKPolyline {
                 let polylineItem: FUIOverlay = isVenueItem ? VenueLineOverlay(points: polyline.points(), count: polyline.pointCount) : BikePathOverlay(points: polyline.points(), count: polyline.pointCount)
-                self.mapModel.editingModel.append(polylineItem)
+                self.mapModel._editingModel.append(polylineItem)
             } else if let polygon = shape as? MKPolygon {
                 let polygonItem: FUIOverlay = isVenueItem ? VenuePolygonOverlay(points: polygon.points(), count: polygon.pointCount) : WalkZoneOverlay(points: polygon.points(), count: polygon.pointCount)
-                self.mapModel.editingModel.append(polygonItem)
+                self.mapModel._editingModel.append(polygonItem)
             }
             self.reloadData()
         }

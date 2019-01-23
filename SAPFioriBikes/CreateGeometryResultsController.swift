@@ -31,19 +31,15 @@ class CreateGeometryResultsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let defaultCell = UITableViewCell()
         switch indexPath.row {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: FUIObjectTableViewCell.reuseIdentifier) as? FUIObjectTableViewCell else { return defaultCell }
-            cell.headlineText = "Headline cell: \(indexPath.row)"
-            return cell
-        case 1:
             guard let snapshotFormCell = tableView.dequeueReusableCell(withIdentifier: FUIMapSnapshotFormCell.reuseIdentifier) as? FUIMapSnapshotFormCell else { return defaultCell }
-            snapshotFormCell.title.text = "My Location"
+            snapshotFormCell.title.text = "Geospatial Item"
             snapshotFormCell.geometry = self.editingGeometry
             if let coordinates = snapshotFormCell.coordinates {
                 let numOfPoints = coordinates.count
