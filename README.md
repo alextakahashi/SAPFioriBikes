@@ -4,7 +4,7 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 
 ## SAPFioriBikes iPhone
 
-![Detail Panel Search Results Bart](ReadMeImages/PanelWalkthrough.gif)
+![Detail Panel Search Results Bart](ReadMeImages/PanelWalkThrough.gif)
 
 ## SAPFioriBikes iPad
 ![Detail Panel Search Results Bart](ReadMeImages/PanelWalkthroughiPad.gif)
