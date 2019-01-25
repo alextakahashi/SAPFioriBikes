@@ -1,10 +1,6 @@
 # SAPFioriBikes: Drawing Geospatial Items
 
-![Complete Walk Zone](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteWalkZoneAdd.gif)
-
 ![Complete Bike Path](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBikePathAdd.gif)
-
-![Complete Brewery](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBrewery.gif)
 
 > Extending the SAPFioriBikes project by adding custom points, polylines, and polygons. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
@@ -27,6 +23,10 @@ Drawing on the map allows users to document locations without the technical know
 
 Around the UC Berkeley campus, riding bikes is one of the main ways of commuting to and from class.  Due to high foot traffic, some locations on campus are designated walk zones for pedestrian safety.  The area between Sproul Hall and the Student Union as a central point in campus are where many students eat, socialize, and study.
 
+Below, I'll walk through how to draw the Walk Zone.
+
+![Complete Walk Zone](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteWalkZoneAdd.gif)
+
 First, let's turn off the `Bikes Layer` and `Bart Layer` in the settings.  This will help declutter the map while we draw.
 
 ![Remove Layers Gif](ReadMeImages/EditingGeospatialObjects/Gifs/RemoveLayersLarge.gif)
@@ -35,7 +35,7 @@ Tap the `+` button in the upper right corner to open the popover showing the ite
 
 ![Create Walk Zone Gif](ReadMeImages/EditingGeospatialObjects/Gifs/CreateWalkZoneLarge.gif)
 
-The editing panel appears on the left.  We will mark the perimeter of our walk zone between Sproul Hall to the ASUC Union from East to West and Sather Gate to Bancroft Way North to South.  Tap on the map to start adding points.
+The editing panel appears on the left.  We will mark the perimeter of our walk zone between Sproul Hall and the ASUC Union from East to West and Sather Gate to Bancroft Way North to South.  Tap on the map to start adding points.
 
 ![Draw Walk Zone Gif](ReadMeImages/EditingGeospatialObjects/Gifs/DrawWalkZone.gif)
 
@@ -54,6 +54,10 @@ Now that we are finished creating the Walk Zone, we tap the Save Button at the b
 ![Save Walk Zone Gif](ReadMeImages/EditingGeospatialObjects/Gifs/SaveWalkZone.gif)
 
 ### Bike Path Polylines
+
+Below, I'll walk through how to draw the bike path.
+
+![Complete Bike Path](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBikePathAdd.gif)
 
 To get around this walk zone and to get to the center of campus, we can draw a preferred bike route that avoids too much foot traffic.  Again open the `+` to show the create options. Tap on the `Bike Path` cell to begin creating a bike path.
 
@@ -92,6 +96,10 @@ Finally, we can save our path by tapping on Save to do additional post processin
 ### Brewery Points
 
 After biking around campus, we could get a refreshing beer at a local brewery.
+
+Below, I'll walk through drawing the brewery.
+
+![Complete Brewery](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBrewery.gif)
 
 Again open the `+` to show the create options.  Tap on the `Brewery` cell to begin creating a brewery point.
 
