@@ -1,5 +1,7 @@
 # SAPFioriBikes: Searching and Displaying GoBike Stations
 
+![Detail Panel Search Results Bart](ReadMeImages/SearchBart.gif)
+
 > Extending the SAPFioriBikes project with the MapFloorplan DetailPanel. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
 This project follows up the original [SAPFioriBikes Blog](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by configuring the Search Results View Controller and Content View Controller.
@@ -16,17 +18,9 @@ The [FUIMapDetailPanel](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d
 
 ![Apple Maps](ReadMeImages/AppleMaps.png)
 
-Our custom panel maintains the functionalities of Apple's panel allowing for displaying a minimum, intermediate, and maximum state.
+Our custom panel maintains the functionalities of Apple's panel allowing for displaying a minimum, intermediate, and maximum state.  Additionally, the internal tableView of the panels allow for scrolling of its content.
 
-![Panel Minimum State](ReadMeImages/Panel_Min.png)
-
-![Panel Intermediate State](ReadMeImages/Panel_Intermediate.png)
-
-![Panel Maximum State](ReadMeImages/Panel_Max.png)
-
-Additionally, the internal tableView of the panels allow for scrolling of its content.
-
-![Panel Scroll](ReadMeImages/Panel_Scroll.png)
+![Panel Scroll](ReadMeImages/DetailPanelScroll.gif)
 
 The panel can show additional details by calling the `detailPanel.pushChildViewController()` method.  See `pushContent(_ : BikeStationAnnotation)` for an example implementation.
 
@@ -48,7 +42,7 @@ The developer adds their own implementation for the `tableView` and `searchBar`b
 
 Now with the searchbar, it is possible to search for all the stations near BART!
 
-![Detail Panel Search Results Bart](ReadMeImages/DetailPanel_SearchBart.png)
+![Detail Panel Search Results Bart](ReadMeImages/SearchBart.gif)
 
 ## Configuring the Content View Controller
 
