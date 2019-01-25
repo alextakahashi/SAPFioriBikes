@@ -112,7 +112,7 @@ This project implements a few features of the Map Floorplan including:
 * Zooming to show all annotations
 * Implementing the map legend
 
-In a future post I will extend this project to implement:
+In the next post I will extend this project to implement:
 * [Search Results View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelSearchResultsViewController.html) to filter annotations
 * [Content View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelContentViewController.html) to show additional details of an annotation
 

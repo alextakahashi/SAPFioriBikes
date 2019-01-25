@@ -141,7 +141,7 @@ Finally we can toggle the Bike and Bart layers to see the final product.  Now we
 
 ## Next Steps
 
-Although this is the last post for this release, in a future post I will extend this project to show Bart as an `FUIRoute`.
+Although this is the last post for this release, in the next post I will extend this project to show Bart as an `FUIRoute`.
 
 ## Conclusion
 
