@@ -28,8 +28,8 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 6. Read my walkthrough
       1. [FUIMapFloorplan: Getting Started](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md)
       2. [FUIMapFloorplan: DetailPanel](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlogDetailPanel.md)
-      3. [FUIMapFloorplan: Geospatial Objects](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesGeospatialObjects.md)
-      4. [FUIMapFloorplan: Editing Geospatial Objects](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesEditing.md)
+      3. [FUIMapFloorplan: Geospatial Objects](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlogGeospatialObjects.md)
+      4. [FUIMapFloorplan: Editing Geospatial Objects](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlogEditing.md)
 
 [//]: # (Needs external blog post link)
 
