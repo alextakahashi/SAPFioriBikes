@@ -1,6 +1,6 @@
 # SAPFioriBikes: Searching and Displaying GoBike Stations
 
-![Detail Panel Search Results Bart](ReadMeImages/PanelWalkthrough.gif)
+![Detail Panel Search Results Bart](ReadMeImages/PanelWalkThrough.gif)
 
 > Extending the SAPFioriBikes project with the MapFloorplan DetailPanel. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
