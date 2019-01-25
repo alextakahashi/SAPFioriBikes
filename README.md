@@ -1,6 +1,6 @@
 # SAPFioriBikes
 
-This project showcases some of the [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/) features of the 3.0 release of the [SAP Fiori iOS SDK](https://developer.apple.com/sap/).  Inspired by Apple's [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) application from WWDC 2017 and the installation of [Ford GoBike](https://www.fordgobike.com/) across the bay area, `SAPFioriBikes` clusters bike stations and shows the number of bikes and eBikes at each location using the SAPFiori Map Floorplan implementation. With this application I hope I can finally track down one of the [Ford GoBike Plus](https://www.fordgobike.com/plus)!
+This project showcases some of the [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/) features of the 3.1 release of the [SAP Fiori iOS SDK](https://developer.apple.com/sap/).  Inspired by Apple's [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) application from WWDC 2017 and the installation of [Ford GoBike](https://www.fordgobike.com/) across the bay area, `SAPFioriBikes` clusters bike stations and shows the number of bikes and eBikes at each location using the SAPFiori Map Floorplan implementation. With this application I hope I can finally track down one of the [Ford GoBike Plus](https://www.fordgobike.com/plus)!
 
 ## SAPFioriBikes iPhone
 
