@@ -29,7 +29,7 @@ Around the UC Berkeley campus, riding bikes is one of the main ways of commuting
 
 First, let's turn off the `Bikes Layer` and `Bart Layer` in the settings.  This will help declutter the map while we draw.
 
-![Remove Layers Gif](ReadMeImages/EditingGeospatialObjects/RemoveLayers.gif)
+![Remove Layers Gif](ReadMeImages/EditingGeospatialObjects/Gifs/RemoveLayersLarge.gif)
 
 <!-- ![Turn off Bikes and Bart Layer](ReadMeImages/EditingGeospatialObjects/TurnOffBikesAndBartLayer.png)
 
@@ -37,7 +37,7 @@ First, let's turn off the `Bikes Layer` and `Bart Layer` in the settings.  This 
 
 Tap the `+` button in the upper right corner to open the popover showing the items that can be created, `Walk Zone`, `Bike Path`, `Brewery`, and `Venue`.  Tap on the `Walk Zone` to begin creating this polygon.  
 
-![Create Walk Zone Gif](ReadMeImages/EditingGeospatialObjects/CreateWalkZoneCropped.gif)
+![Create Walk Zone Gif](ReadMeImages/EditingGeospatialObjects/Gifs/CreateWalkZoneCropped.gif)
 
 ![Open Create Popover](ReadMeImages/EditingGeospatialObjects/OpenCreatePopover.png)
 
