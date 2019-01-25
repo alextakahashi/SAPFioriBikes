@@ -4,18 +4,14 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 
 ## SAPFioriBikes iPhone
 
-![SAPFioriBikes iPhone](./ReadMeImages/No_Legend_iPhone.png?raw=true)
-
-## SAPFioriBikes iPhone Legend
-
-![SAPFioriBikes iPhone Legend](./ReadMeImages/Show_Legend_iPhone.png?raw=true)
+![Detail Panel Search Results Bart](ReadMeImages/PanelWalkthrough.gif)
 
 ## SAPFioriBikes iPad
-![SAPFioriBikes iPad](./ReadMeImages/No_Legend_iPad.png?raw=true)
+![Detail Panel Search Results Bart](ReadMeImages/PanelWalkthroughiPad.gif)
 
-## SAPFioriBikes iPad Legend
+## SAPFioriBikes Editing Geospatial Objects
 
-![SAPFioriBikes iPad Legend](./ReadMeImages/Show_Legend_iPad.png?raw=true)
+![Complete Bike Path](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBikePathAdd.gif)
 
 ## Getting Started
 
@@ -25,11 +21,15 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 
 3. Add the `SAPFiori.framework` and `SAPCommon.framework` to the `Embedded Binaries` and `Linked Frameworks and Libraries`.
 
-4. Build and Run 🚴‍
+4. Install `StellarJay` using Carthage
 
-5. Read my walkthrough
+5. Build and Run 🚴‍
+
+6. Read my walkthrough
       1. [FUIMapFloorplan: Getting Started](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md)
       2. [FUIMapFloorplan: DetailPanel](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlogDetailPanel.md)
+      3. [FUIMapFloorplan: Geospatial Objects](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesGeospatialObjects.md)
+      4. [FUIMapFloorplan: Editing Geospatial Objects](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesEditing.md)
 
 [//]: # (Needs external blog post link)
 
@@ -38,6 +38,7 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 * Xcode 10.0+
 * SAPFiori
 * SAPCommon
+* StellarJay
 
 ## API References
 
