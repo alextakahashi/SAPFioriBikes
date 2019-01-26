@@ -1,10 +1,12 @@
 # SAPFioriBikes: Drawing Geospatial Items
 
+This project follows up with the original [SAPFioriBikes Blog Series](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by drawing custom points, polylines, and polygons on the map. 
+
 ![Complete Bike Path](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBikePathAdd.gif)
 
 > Extending the SAPFioriBikes project by adding custom points, polylines, and polygons. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
 
-This project follows up with the original [SAPFioriBikes Blog Series](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by drawing custom points, polylines, and polygons on the map.  Through this walkthrough we also go over actions including:
+ Through this walkthrough we also go over actions including:
 * Adding points
 * Deleting points
 * Editing points
@@ -21,7 +23,7 @@ Drawing on the map allows users to document locations without the technical know
 
 ### Walk Zone Polygons
 
-Around the UC Berkeley campus, riding bikes is one of the main ways of commuting to and from class.  Due to high foot traffic, some locations on campus are designated walk zones for pedestrian safety.  The area between Sproul Hall and the Student Union as a central point in campus are where many students eat, socialize, and study.
+Riding bikes is one of the main ways of commuting to classes around the UC Berkeley campus.  Due to high foot traffic, some locations on campus are designated walk zones for pedestrian safety.  The area between Sproul Hall and the Student Union serves as a central point on campus where many students eat, socialize, and study.
 
 Below, I'll walk through how to draw the Walk Zone.
 
@@ -45,11 +47,11 @@ It is difficult to see exactly what area we are drawing over because of the base
 
 With the basemap change, we can change the `colorScheme` of the map to show lines that appear better on this background.
 
-From the map we can see the high density of students around campus.  Let's extend the points points north from Sather Gate to University Drive.  Press and hold the point then begin dragging to reposition the coordinate to University Drive
+From the map we can see the high density of students around campus.  Let's extend the points north from Sather Gate to University Drive.  Press and hold the point then begin dragging to reposition the coordinate to University Drive
 
 ![Move Walk Zone](ReadMeImages/EditingGeospatialObjects/Gifs/MoveWalkZone.gif)
 
-Now that we are finished creating the Walk Zone, we tap the Save Button at the bottom of the panel to do additional post processing.  The tableView can be populated with custom fields provided by the developer.  In this example we show the `FUIMapSnapshotFormCell` which shows the added geometry in a `UITableViewCell`.  Tap save in the right corner and the polygon will be saved to the map.
+Now that we have finished creating the Walk Zone, we tap the Save Button at the bottom of the panel to perform additional post processing.  The tableView can be populated with custom fields provided by the developer.  In this example we show the `FUIMapSnapshotFormCell` which shows the added geometry in a `UITableViewCell`.  Tap Save in the right corner and the polygon will be saved to the map.
 
 ![Save Walk Zone Gif](ReadMeImages/EditingGeospatialObjects/Gifs/SaveWalkZone.gif)
 
@@ -63,19 +65,19 @@ To get around this walk zone and to get to the center of campus, we can draw a p
 
 ![Create Bike Path Gif](ReadMeImages/EditingGeospatialObjects/Gifs/CreateBikePath.gif)
 
-Coming from the Telegraph and Bancroft Intersection, I might take this path.  Again we tap on the map to add points.  Below is just a rough path.
+Coming from the Telegraph and Bancroft Intersection, I might take this path.  Again we tap on the map to add points.  Below is a rough path.
 
 ![Draw Bike Path Gif](ReadMeImages/EditingGeospatialObjects/Gifs/DrawBikePath.gif)
 
-Going straight through Memorial Glade to Moffit Library can be difficult since its practically all grass with many students around.  We can tap the Undo Button on the toolbar to undo the added points.
+Going straight through Memorial Glade to Moffit Library can be difficult since it's practically all grass with many students around.  We can tap the Undo Button on the toolbar to undo the added points.
 
 ![Undo Path Gif](ReadMeImages/EditingGeospatialObjects/Gifs/UndoPath.gif)
 
-If we wanted to add back our points, we can use the Redo Button.
+If we wanted to add back our points, we can use the Redo button.
 
 ![Redo Path Gif](ReadMeImages/EditingGeospatialObjects/Gifs/RedoPath.gif)
 
-To delete a point we can toggle the Delete Button and tap the point on the map.  Set the Delete Button on. Then tap a point.
+To delete a point we can toggle the Delete button and tap the point on the map.  Set the Delete button on. Then tap a point.
 
 ![Delete Point Gif](ReadMeImages/EditingGeospatialObjects/Gifs/DeletePoint.gif)
 
@@ -85,11 +87,11 @@ We can also swipe to delete on the editing panel.
 
 Another path I take branches out from this route.  By tapping the Branch button in the toolbar we can add a branch off of the path.
 
-First, we toggle the Branch Button to on. Next, we tap to another point on the map to continue adding points
+First, we toggle the Branch button to on. Next, we tap to another point on the map to continue adding points.
 
 ![Branch Point](ReadMeImages/EditingGeospatialObjects/Gifs/BranchPoint.gif)
 
-Finally, we can save our path by tapping on Save to do additional post processing.  Tapping the Save in the top right, the path is now added to the map.
+Finally, we can save our path by tapping Save to perform additional post processing.  Tapping Save in the top right, the path is now added to the map.
 
 ![Saved Bike Path Gif](ReadMeImages/EditingGeospatialObjects/Gifs/SavedBikePath.gif)
 
@@ -109,7 +111,7 @@ We can type directly into the cell to search for the location.  Tap on the `Add 
 
 ![Add Brewery Point Gif](ReadMeImages/EditingGeospatialObjects/Gifs/AddBreweryPoint.gif)
 
-Tap save to show post processing.  Tap save to add the point to the map.
+Tap Save to show post processing.  Tap Save to add the point to the map.
 
 ![Save Brewery Point Gif](ReadMeImages/EditingGeospatialObjects/Gifs/SaveBreweryPoint.gif)
 
@@ -135,13 +137,13 @@ Save as usual and the map will show the Venue Item.
 
 ![Save Venue Item](ReadMeImages/EditingGeospatialObjects/Gifs/SaveVenue.gif)
 
-Finally we can toggle the Bike and Bart layers to see the final product.  Now we can see the station annotations, Bart Line, and all of our custom geospatial items.
+Finally we can toggle the Bike and Bart layers to see the final product.  Now we can see the station annotations, BART Line, and all of our custom geospatial items.
 
 ![Turn On Layers](ReadMeImages/EditingGeospatialObjects/Gifs/TurnLayersOn.gif)
 
 ## Next Steps
 
-Although this is the last post for this release, in the next post I will extend this project to show Bart as an `FUIRoute`.
+Although this is the last post for this series, in the next post I will extend this project to show BART as an `FUIRoute`.
 
 ## Conclusion
 
