@@ -89,7 +89,7 @@ This function call reloads the geometries and layers on the map.  At this point 
 
 ## BikeStationAnnotationView
 
-![Annotation Image](./ReadMeImages/Bike_Annotation_View.png?raw=true)
+![Annotation Image](./ReadMeImages/BikeAnnotationView.png?raw=true)
 
 The `BikeStationAnnotationView` takes inspiration from TANDm with their cluster annotation.  With a few minor changes to the original source code, I am able to display the number of bikes and eBikes at each station.  Tap the legend button to show the meaning of each color.  
 
