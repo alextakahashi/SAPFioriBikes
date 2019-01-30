@@ -66,6 +66,9 @@ class ViewController: FUIMKMapFloorplanViewController, MKMapViewDelegate, Search
         // MARK: Search Results
         searchResultsObject = SearchResultsControllerObject(self)
         didSelectBikeStationSearchResult = { [unowned self] station in
+            if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
+                window.endEditing(true)
+            }
             self.pushContent(station)
         }
         detailPanel.searchResults.tableView.register(FUIObjectTableViewCell.self, forCellReuseIdentifier: FUIObjectTableViewCell.reuseIdentifier)
