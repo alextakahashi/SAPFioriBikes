@@ -25,11 +25,11 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 
 5. Build and Run 🚴‍
 
-6. Read my walkthrough
-      1. [FUIMapFloorplan: Getting Started](https://blogs.sap.com/2019/01/31/sapfioribikes-visualization-of-gobike-stations-built-with-the-sap-ios-sdk/)
-      2. [FUIMapFloorplan: DetailPanel](https://blogs.sap.com/2019/01/31/sapfioribikes-searching-and-displaying-gobike-stations/)
-      3. [FUIMapFloorplan: Geospatial Objects](https://blogs.sap.com/2019/01/31/sapfioribikes-geospatial-objects/)
-      4. [FUIMapFloorplan: Editing Geospatial Objects](https://blogs.sap.com/2019/01/31/sapfioribikes-drawing-geospatial-items/)
+6. Read my walkthrough and checkout the corresponding branch (post#)
+      1. [SAPFioriBikes: Visualization of GoBike Stations Built with the SAP Cloud Platform SDK for iOS](https://blogs.sap.com/2019/01/31/sapfioribikes-visualization-of-gobike-stations-built-with-the-sap-ios-sdk/)
+      2. [SAPFioriBikes: Searching and Displaying GoBike Stations with SAP CP SDK for iOS](https://blogs.sap.com/2019/01/31/sapfioribikes-searching-and-displaying-gobike-stations/)
+      3. [SAPFioriBikes: Geospatial Objects with SAP CP SDK for iOS](https://blogs.sap.com/2019/01/31/sapfioribikes-geospatial-objects/)
+      4. [SAPFioriBikes: Drawing Geospatial Items with SAP CP SDK for iOS](https://blogs.sap.com/2019/01/31/sapfioribikes-drawing-geospatial-items/)
 
 ### Prerequisites
 
