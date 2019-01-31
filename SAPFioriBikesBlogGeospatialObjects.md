@@ -1,4 +1,4 @@
-# SAPFioriBikes: Searching and Displaying GoBike Stations
+# SAPFioriBikes: Geospatial Objects
 
 ![asdf](ReadMeImages/BartPolyline.png)
 
