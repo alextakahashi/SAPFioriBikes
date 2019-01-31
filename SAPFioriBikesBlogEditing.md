@@ -145,6 +145,8 @@ Finally we can toggle the Bike and Bart layers to see the final product.  Now we
 
 Although this is the last post for this series, in the next post I will extend this project to show BART as an `FUIRoute`.
 
+The completed project can be found [HERE](https://github.com/alextakahashi/SAPFioriBikes)
+
 ## Conclusion
 
 The Map Floorplan component provides the foundation to create complex map applications.  Throughout this blog post series, I've documented:

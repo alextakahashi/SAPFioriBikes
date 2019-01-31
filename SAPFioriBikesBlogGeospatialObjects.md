@@ -56,6 +56,8 @@ In the next post, I will show the editing function of the floorplan by drawing d
 
 Read the next blog post [HERE](https://blogs.sap.com/2019/01/31/sapfioribikes-drawing-geospatial-items/)
 
+The completed project can be found [HERE](https://github.com/alextakahashi/SAPFioriBikes)
+
 ## Conclusion
 
 The Map Floorplan shows not only point locations but also polylines and polygons.  A developer updates his layer model with these shapes to create richer maps.  Using the open source framework StellarJay, we can easily import GeoJSON directly into the map.  Layers are easily filterable using the Settings button to show relevant information.

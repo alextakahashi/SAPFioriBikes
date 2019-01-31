@@ -117,6 +117,8 @@ In the next post I will extend this project to implement:
 
 Read the next blog post [HERE](https://blogs.sap.com/2019/01/31/sapfioribikes-searching-and-displaying-gobike-stations/)
 
+The completed project can be found [HERE](https://github.com/alextakahashi/SAPFioriBikes)
+
 ## Conclusion
 
 At first glance maps can feel quite overwhelming since they can display an extensive amount of information. It is important to keep the user focus on the most relevant information.  The Map Floorplan provides the foundation for a robust map with a minimal amount of code on the developer's end.   
