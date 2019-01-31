@@ -76,6 +76,8 @@ The Detail Panel has similar functionality on the iPad, but takes advantage of e
 
 In the next post I will extend this project to show other GeoSpatial objects including [`FUIPolyline`](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Map%20view.html#/s:8SAPFiori11FUIPolylineP) and [`FUIPolygon`](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Map%20view.html#/s:8SAPFiori10FUIPolygonP).
 
+Read the next blog post [HERE](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogDetailPanel.md)
+
 ## Conclusion
 
 The FUIMapDetailPanel provides a convenient way to search for stations and display additional details directly on top of the mapView similar to Apple Maps.  Developers simply need to set their own `UITableViewDataSource`, `UITableViewDelegate`, and `UISearchBarDelegate` to add their own custom implementation.  Despite the smaller screen sizes on the iPhone compared to the iPad, the DetailPanel can show scrollable content as needed.
