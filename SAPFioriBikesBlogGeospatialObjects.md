@@ -1,4 +1,4 @@
-# SAPFioriBikes: Searching and Displaying GoBike Stations
+# SAPFioriBikes: Geospatial Objects
 
 This project follows up with the original [SAPFioriBikes Blog Series](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by adding additional Geospatial Objects.
 
