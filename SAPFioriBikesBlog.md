@@ -116,6 +116,8 @@ In the next post I will extend this project to implement:
 * [Search Results View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelSearchResultsViewController.html) to filter annotations
 * [Content View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelContentViewController.html) to show additional details of an annotation
 
+Read the next blog post [HERE](https://github.com/alextakahashi/SAPFioriBikes/blob/post2/SAPFioriBikesBlogDetailPanel.md)
+
 ## Conclusion
 
 At first glance maps can feel quite overwhelming since they can display an extensive amount of information. It is important to keep the user focus on the most relevant information.  The Map Floorplan provides the foundation for a robust map with a minimal amount of code on the developer's end.   
