@@ -1,4 +1,4 @@
-# SAPFioriBikes
+# SAPFioriBikes using SAP Cloud Platform SDK for iOS
 
 This project showcases some of the [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/) features of the 3.1 release of the [SAP Fiori iOS SDK](https://developer.apple.com/sap/).  Inspired by Apple's [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/decluttering_a_map_with_mapkit_annotation_clustering) application from WWDC 2017 and the installation of [Ford GoBike](https://www.fordgobike.com/) across the bay area, `SAPFioriBikes` clusters bike stations and shows the number of bikes and eBikes at each location using the SAPFiori Map Floorplan implementation. With this application I hope I can finally track down one of the [Ford GoBike Plus](https://www.fordgobike.com/plus)!
 
@@ -26,12 +26,10 @@ This project showcases some of the [Map Floorplan](https://experience.sap.com/fi
 5. Build and Run 🚴‍
 
 6. Read my walkthrough
-      1. [FUIMapFloorplan: Getting Started](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md)
-      2. [FUIMapFloorplan: DetailPanel](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogDetailPanel.md)
-      3. [FUIMapFloorplan: Geospatial Objects](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogGeospatialObjects.md)
-      4. [FUIMapFloorplan: Editing Geospatial Objects](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogEditing.md)
-
-[//]: # (Needs external blog post link)
+      1. [FUIMapFloorplan: Getting Started](https://blogs.sap.com/2019/01/31/sapfioribikes-visualization-of-gobike-stations-built-with-the-sap-ios-sdk/)
+      2. [FUIMapFloorplan: DetailPanel](https://blogs.sap.com/2019/01/31/sapfioribikes-searching-and-displaying-gobike-stations/)
+      3. [FUIMapFloorplan: Geospatial Objects](https://blogs.sap.com/2019/01/31/sapfioribikes-geospatial-objects/)
+      4. [FUIMapFloorplan: Editing Geospatial Objects](https://blogs.sap.com/2019/01/31/sapfioribikes-drawing-geospatial-items/)
 
 ### Prerequisites
 

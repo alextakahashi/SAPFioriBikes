@@ -1,10 +1,10 @@
-# SAPFioriBikes: Geospatial Objects
+# SAPFioriBikes: Geospatial Objects with SAP CP SDK for iOS
 
-This project follows up with the original [SAPFioriBikes Blog Series](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by adding additional Geospatial Objects.
+This project follows up with the original [SAPFioriBikes Blog Series](https://blogs.sap.com/2019/01/31/sapfioribikes-visualization-of-gobike-stations-built-with-the-sap-ios-sdk/) by adding additional Geospatial Objects.
 
 ![asdf](ReadMeImages/BartPolyline.png)
 
-> Extending the SAPFioriBikes project by adding Geospatial Objects using [StellarJay](https://github.com/sstadelman/stellarjay). Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
+> Extending the SAPFioriBikes project by adding Geospatial Objects using [StellarJay](https://github.com/sstadelman/stellarjay). Check out the code [HERE](https://github.com/alextakahashi/SAPFioriBikes/tree/post3)
 
 
 
@@ -54,7 +54,7 @@ Below are similar images taken from the XSMax.
 
 In the next post, I will show the editing function of the floorplan by drawing directly on the map.  A user will be able to draw and edit points, lines, and polygons.  The floorplan has a rich drawing feature to draw complex shapes.
 
-Read the next blog post [HERE](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogEditing.md)
+Read the next blog post [HERE](https://blogs.sap.com/2019/01/31/sapfioribikes-drawing-geospatial-items/)
 
 ## Conclusion
 

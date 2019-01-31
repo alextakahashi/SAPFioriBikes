@@ -1,10 +1,10 @@
-# SAPFioriBikes: Drawing Geospatial Items
+# SAPFioriBikes: Drawing Geospatial Items with SAP CP SDK for iOS
 
-This project follows up with the original [SAPFioriBikes Blog Series](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by drawing custom points, polylines, and polygons on the map. 
+This project follows up with the original [SAPFioriBikes Blog Series](https://blogs.sap.com/2019/01/31/sapfioribikes-visualization-of-gobike-stations-built-with-the-sap-ios-sdk/) by drawing custom points, polylines, and polygons on the map. 
 
 ![Complete Bike Path](ReadMeImages/EditingGeospatialObjects/Gifs/CompleteBikePathAdd.gif)
 
-> Extending the SAPFioriBikes project by adding custom points, polylines, and polygons. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
+> Extending the SAPFioriBikes project by adding custom points, polylines, and polygons. Check out the code [HERE](https://github.com/alextakahashi/SAPFioriBikes/tree/post4)
 
  Through this walkthrough we also go over actions including:
 * Adding points

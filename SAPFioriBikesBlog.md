@@ -1,11 +1,10 @@
-# SAPFioriBikes: Visualization of GoBike Stations Built with the SAP iOS SDK
+# SAPFioriBikes: Visualization of GoBike Stations Built with the SAP Cloud Platform SDK for iOS
 This blog describes a Ford GoBike app built with SAPFiori components that allows users to quickly and easily utilize the GoBike service by providing visualization of GoBike stations.
 The Ford GoBike map below clusters the stations into groups for easy accessibility:
 
 ![SAPFioriBikes iPhone](./ReadMeImages/No_Legend_iPhone.png?raw=true)
 
-[//]: # (Needs a public github link)
-> Check out the Ford GoBike map implementation [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
+> Check out the Ford GoBike map implementation [HERE](https://github.com/alextakahashi/SAPFioriBikes/tree/master)
 
 # Inspiration
 
@@ -28,8 +27,8 @@ The [TANDm](https://developer.apple.com/documentation/mapkit/mkannotationview/de
 I used features from:
 - [SAP Fiori iOS SDK](https://developer.apple.com/sap/) [Map Floorplan](https://experience.sap.com/fiori-design-ios/article/map/) to provide the foundation of the application
 -  `FUIMapToolbar` and `FUIMapLegend` to display annotations and describe what they mean
-[//]: # (Needs a public github link)
-Follow along using the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes).  
+
+Follow along using the code [HERE](https://github.com/alextakahashi/SAPFioriBikes/tree/post1).  
 
 ## Map View Controller
 
@@ -116,7 +115,7 @@ In the next post I will extend this project to implement:
 * [Search Results View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelSearchResultsViewController.html) to filter annotations
 * [Content View Controller](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Classes/FUIMapDetailPanelContentViewController.html) to show additional details of an annotation
 
-Read the next blog post [HERE](https://github.com/alextakahashi/SAPFioriBikes/blob/post2/SAPFioriBikesBlogDetailPanel.md)
+Read the next blog post [HERE](https://blogs.sap.com/2019/01/31/sapfioribikes-searching-and-displaying-gobike-stations/)
 
 ## Conclusion
 

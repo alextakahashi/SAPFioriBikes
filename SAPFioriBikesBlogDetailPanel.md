@@ -1,10 +1,10 @@
-# SAPFioriBikes: Searching and Displaying GoBike Stations
+# SAPFioriBikes: Searching and Displaying GoBike Stations with SAP CP SDK for iOS
 
-This project follows up with the original [SAPFioriBikes Blog](https://github.wdf.sap.corp/i860364/SAPFioriBikes/blob/master/SAPFioriBikesBlog.md) by configuring the Search Results View Controller and Content View Controller.
+This project follows up with the original [SAPFioriBikes Blog](https://github.com/alextakahashi/SAPFioriBikes/tree/master) by configuring the Search Results View Controller and Content View Controller.
 
 ![Detail Panel Search Results Bart](ReadMeImages/PanelWalkThrough.gif)
 
-> Extending the SAPFioriBikes project with the MapFloorplan DetailPanel. Check out the code [HERE](https://github.wdf.sap.corp/i860364/SAPFioriBikes)
+> Extending the SAPFioriBikes project with the MapFloorplan DetailPanel. Check out the code [HERE](https://github.com/alextakahashi/SAPFioriBikes/tree/post2)
 
 
 
@@ -76,7 +76,7 @@ The Detail Panel has similar functionality on the iPad, but takes advantage of e
 
 In the next post I will extend this project to show other GeoSpatial objects including [`FUIPolyline`](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Map%20view.html#/s:8SAPFiori11FUIPolylineP) and [`FUIPolygon`](https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/3.0/en-US/Documents/Frameworks/SAPFiori/Map%20view.html#/s:8SAPFiori10FUIPolygonP).
 
-Read the next blog post [HERE](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogGeospatialObjects.md)
+Read the next blog post [HERE](https://blogs.sap.com/2019/01/31/sapfioribikes-geospatial-objects/)
 
 ## Conclusion
 
