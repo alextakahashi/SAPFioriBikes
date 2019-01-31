@@ -54,6 +54,8 @@ Below are similar images taken from the XSMax.
 
 In the next post, I will show the editing function of the floorplan by drawing directly on the map.  A user will be able to draw and edit points, lines, and polygons.  The floorplan has a rich drawing feature to draw complex shapes.
 
+Read the next blog post [HERE](https://github.com/alextakahashi/SAPFioriBikes/blob/master/SAPFioriBikesBlogGeospatialObjects.md)
+
 ## Conclusion
 
 The Map Floorplan shows not only point locations but also polylines and polygons.  A developer updates his layer model with these shapes to create richer maps.  Using the open source framework StellarJay, we can easily import GeoJSON directly into the map.  Layers are easily filterable using the Settings button to show relevant information.
